@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSMIS - Staff</title>
+
+    <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+    
+    <link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/staff.css}">
+
+
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Staff List</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}" ></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+
+<!-- **************** Refresh Table *********************************** -->
+        <form th:action="@{/DAT/staff_refresh}">
+        	<button type="submit" class="refreshBtn">Refresh</button>
+        </form>
+        
+        <div class="help" sec:authorize="hasRole('ADMIN')">
+			<span id="help_icon">?</span>
+			<span id="help_title">Staff Excel/CSV file format?</span>
+		</div>
+
+        <div class="search_upload_container" >
+            <form th:action="@{/DAT/staff_search}" class="search_container">
+                <div class="searchReplace_container">
+                    <input class="main_searchInput" type="search" list="" name="searchValue" th:value="${searchValue}" placeholder="Search here..." />
+                    <button type="submit">Search</button>
+                    
+                      
+                    <datalist id="department_list">
+                    	<option th:each="department : ${departments}" th:value="${department}" th:text="${department}"></option>
+                    </datalist>
+                    
+                    <datalist id="team_list">
+                    	<option th:each="team : ${teams}" th:value="${team}" th:text="${team}"></option>
+                    </datalist>
+                </div>
+                
+                <input name="pageNumber" type="hidden" th:value="${pageNumber}"/>
+                <input type="hidden" id="selectedStatus" th:value="${selectedStatus}"/>
+
+                <div class="searchReplace_paper_container close">
+                    <select class="filter_paper_dropdown" name="filterStatus">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                    <button type="submit">Search</button>
+                </div>
+                
+                <input type="hidden" id="selectedFilterBy" th:value="${selectedFilterBy}"/>
+
+                <span>Filter By : </span>
+                <select class="filter_dropdown" name="filterBy" >
+                    <option value="staffId">Staff Id</option>
+                    <option value="username">Username</option>
+                    <option value="department">Department</option>
+                    <option value="team">Team</option>
+                    <option value="status">Status</option>
+                </select>
+
+            </form>
+
+		<!-- **************** Upload CSV FIle *********************************** -->
+            <form class="inputFile_container" 
+            		method="POST" 
+            		th:action="@{/DAT/upload-staff-csv}" 
+            		enctype="multipart/form-data" 
+            >
+                <input id="inputFile" name="file" type="file" 
+                	accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  
+                	required="required"
+                />
+                <button type="submit" id="saveFileBtn" disabled>Save</button>
+            </form>
+            
+            <!--display error if any-->
+            <div id="fileUploadErrorBox" role="alert" th:if="${!status}">
+                <strong>Error:</strong>
+                <span th:text="${message}"></span>
+            </div>
+
+        </div>
+
+        <div class="total_div">
+        	<label>Found :
+                <span th:text="${found}"></span>
+            </label>
+            <label>Total :
+                <span th:text="${staffs.size()}"></span>
+            </label>
+        </div>
+        
+        <!-- ******************* No data ***************  -->
+        
+        <label th:class="${staffs.isEmpty() ? 'noData open' : 'noData'}">No Data Found!</label>
+
+        <!-- ****************** Table ***************** -->
+
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Staff ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Info</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tempStaff, staffStatus : ${staffs}">
+                        <td th:text="${staffStatus.count + (50 * (pageNumber - 1))}"></td>
+                        <td th:text="${tempStaff.staffId}"></td>
+                        <td th:text="${tempStaff.name}"></td>
+                        <td th:text="${(tempStaff.department==null || tempStaff.department.equals('')) ? '-------' : tempStaff.department}"></td>
+                        <td th:text="${(tempStaff.team==null || tempStaff.team.equals('')) ? '-------' : tempStaff.team}"></td>
+                        <td th:text="${(tempStaff.status == 1) ? 'Active' : 'Inactive'}"></td>
+                        <td th:id="${staffs.indexOf(tempStaff)}">
+                        
+                        	<input type="hidden" id="role" th:value="${tempStaff.role}">
+                            <input type="hidden" id="division" th:value="${tempStaff.division==null ? '' : tempStaff.division}">
+                            <input type="hidden" id="staffId" th:value="${tempStaff.staffId}">
+                            <input type="hidden" id="name" th:value="${tempStaff.name}">
+                            <input type="hidden" id="doofLog" th:value="${tempStaff.doorLogNo==null ? '' : tempStaff.doorLogNo}">
+                            <input type="hidden" id="department" th:value="${tempStaff.department==null ? '' : tempStaff.department}">
+                            <input type="hidden" id="team" th:value="${tempStaff.team==null ? '' : tempStaff.team}">
+                            <input type="hidden" id="email" th:value="${tempStaff.email==null ? '' : tempStaff.email}">
+                            <input type="hidden" id="status" th:value="${(tempStaff.status == 1) ? 'Active' : 'Inactive'}">
+                            <input type="hidden" id="createdAt" th:value="${tempStaff.createdAt==null ? '' : tempStaff.createdAt}">
+                            <input type="hidden" id="createdBy" th:value="${tempStaff.createdBy==null ? '' : tempStaff.createdBy}">
+                            <input type="hidden" id="updatedAt" th:value="${tempStaff.updatedAt==null ? '' : tempStaff.updatedAt}">
+                            <input type="hidden" id="updatedBy" th:value="${tempStaff.updatedBy==null ? '' : tempStaff.updatedBy}">
+                            <input type="hidden" id="statusData" th:value="${tempStaff.status}">
+                            
+                            <button id="staff_info_btn">
+                                <i class="fa-solid fa-address-card"></i>
+                            </button>
+                        </td>
+                        <td th:id="${staffs.indexOf(tempStaff)}">
+                            <button id="staff_edit_btn">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    
+
+
+                </tbody>
+            </table>
+        </div>
+        
+        <input class="maxPage" type="hidden" th:value="${maxPage}"/>
+
+
+        <form class="pagination" th:action="@{/DAT/pagination}">
+            <button type="submit" class="prev">&laquo; </button>
+            <label>Page </label>
+            <input class="page_input" id="page_input" name="pageNumber" type="text" th:value="${pageNumber}" readonly />
+            <span id="maxPageValue">of <span th:text="${maxPage}"></span></span>
+            <button type="submit" class="next">&raquo; </button>
+            <span class="prevHider"></span>
+            <span class="nextHider"></span>
+        </form>
+
+
+
+
+
+
+        <!-- ****************** Popup Container ************************ -->
+
+        <div class="info_popup_container">
+        
+        
+        <!-- *************************************************************** -->
+
+            <button class="closePopupBtn"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="staff_detail_container">
+                <label id="staffDetail_label">Details of <span id="editUserName" style="color:goldenrod;">Staff Name</span></label>
+                <div>
+                    <span id="infoText">Role</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Division</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Staff ID</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Name</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">DoorLogNo</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Department</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Team</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Email</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+
+                <div>
+                    <span id="infoText">Status</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Created at</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Created by</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Last Updated at</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Last Updated by</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+
+            </div>
+
+            <form class="staff_info_update_container" th:action="@{/DAT/staff_edit}" th:object="${staff_DTO}" method="POST">
+                <label id="staff_info_edit_label">Edit Details of <span id="editUserName" style="color:goldenrod;"></span></label>
+
+                <div>
+                    <div class="left">
+                        <div>
+                            <input id="infoInput" th:field="*{division}" type="text" placeholder="Division" title="Division"/>
+                            <span>Division</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" th:field="*{staffId}" type="text" placeholder="Staff Id" title="Staff Id" />
+                            <span>StaffId</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" th:field="*{doorLogNo}" type="text" placeholder="DoorLog No" title="DoorLog No" />
+                            <span>DoorLogNo</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" th:field="*{department}" type="text" placeholder="Department Name" title="Department"/>
+                            <span>Department</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" th:field="*{team}" type="text" placeholder="Team Name" title="Team"/>
+                            <span>Team</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" th:field="*{email}" type="email" placeholder="Email" title="Email" />
+                            <span>Email</span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div>
+                            <label id="staff_status_label">Status</label>
+                            <select class="status_dropdown" th:field="*{status}">
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label id="staff_role_label">Role</label>
+                            <select class="role_dropdown" th:field="*{role}">
+                                <option value="ROLE_EMPLOYEE">Staff</option>
+                                <option value="ROLE_ADMIN">Admin</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div id="edit_div_bottom">
+                    <button type="submit" class="saveInfoEidtBtn">Save</button>
+                </div>
+            </form>
+
+        </div>
+        
+        <!-- ===============  Help Popup Container ====================== -->
+		<div class="helpPopupContainer">
+	
+			<button class="closeHelpPopupBtn"><i class="fa-solid fa-xmark"></i></button>
+			
+			<div class="helpCenterContainer">
+				<label>Staff Excel / CSV File Format</label>
+				
+				<img alt="holiday_file_format_img" th:src="@{/images/staff_file_format.png}"/>
+				
+				<span>- Please import the Excel/CSV file as shown in above picture.</span>
+			</div>
+		
+		</div>
+
+    </div>
+    
+    <div class="loading_popup_container">
+    	 <!-- ****************** Loading Container ************************ -->
+        
+        	<div class="loading_container">
+        		<span class="box"></span>
+        		<span class="box"></span>
+        		<p>Importing data ...</p>
+        	</div>
+    </div>
+
+
+	<div th:class="${updateMessage_class}">
+		<div id="iconBox">
+			<lord-icon src="https://cdn.lordicon.com/yqzmiobz.json"
+				colors="primary:#00d736"
+				trigger="loop" style="width:50px;height:50px"> 
+			</lord-icon>
+		</div>
+		<div id="messageBox">
+			<span>SUCCESS!</span>
+			<span th:text="${updateMessage}"></span>
+		</div>
+		
+	</div>
+
+
+    <script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/staff.js}"></script>
+    <script th:src="@{/js/pagination.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Access Denied</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: #e1e8f0;
+            color: #333f50;
+        }
+
+        h1 {
+            color: red;
+        }
+
+        a {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+            border: 1p solid black;
+            animation: popupAnimation 0.7s forwards;
+        }
+
+        @keyframes popupAnimation {
+            0% {
+                font-size: 0px;
+                bottom: -10px;
+            }
+
+            100% {
+                font-size: 16px;
+                bottom: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-display-middle container">
+        <h1 class="w3-jumbo w3-animate-top w3-center"><code>Access Denied</code></h1>
+        <hr class="w3-border-black w3-animate-left" style="margin:auto;width:50%">
+        <h3 class="w3-center w3-animate-right">You don't have permission to view this site.</h3>
+        <h3 class="w3-center w3-animate-zoom">🚫🚫🚫🚫</h3>
+
+    </div>
+
+    <a th:href="@{/}">Back to This way</a>
+</body>
+
+</html>

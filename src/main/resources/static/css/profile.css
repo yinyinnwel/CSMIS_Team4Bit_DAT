@@ -1,0 +1,482 @@
+.center_container .profile_form_container{
+  width: 100%;
+  height:85%;
+  margin-bottom: 100px;
+}
+
+.center_container #profile_label {
+  color: #333f50;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 55px;
+  padding-left: 50px;
+
+  font-size: 2em;
+  font-weight: 600;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+}
+
+.center_container .saveProfileBtn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 120px;
+  height: 50px;
+  outline-style: none;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background-color: #333f50;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.center_container .saveProfileBtn:hover {
+  background-color: #293342;
+}
+
+.profile_container {
+  color: #333f50;
+  position: relative;
+  width: 100%;
+  height: 83%;
+  margin-top: 80px;
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-radius: 5px;
+  padding-bottom: 100px;
+  background-color: transparent;
+  overflow-y: auto;
+  /* border: 1px solid red; */
+}
+
+.profile_container::-webkit-scrollbar {
+  width: 0.8em;
+}
+
+.profile_container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+}
+
+.profile_container::-webkit-scrollbar-thumb {
+  background-color: #333f50;
+  border-radius: 15px;
+}
+
+.profile_container::-webkit-scrollbar-thumb:hover {
+  background-color: #3d4a5e;
+}
+
+.profile_container #profile_info_container {
+  position: relative;
+  width: 40%;
+  min-height: 220px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profile_container #profile_info_container div {
+  position: relative;
+  width: 100%;
+  min-height: 50px;
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile_container #profile_info_container div > label {
+  width: 50%;
+  text-align: left;
+  font-size: 1em;
+  font-weight: 600;
+}
+.profile_container #profile_info_container div > input {
+  width: 50%;
+  height: 40px;
+  outline-style: none;
+  border: 2px solid #333f50;
+  border-radius: 3px;
+  padding-left: 10px;
+  color: #333f50;
+  font-size: 16px;
+  background-color: #eceff5;
+}
+
+.profile_container #profile_info_container div:nth-child(4) > button {
+  font-size: medium;
+  width: 54%;
+  height: 44px;
+  outline-style: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #333f50;
+  margin-left: 3px;
+}
+.profile_container #profile_info_container div:nth-child(4) > button:hover {
+  background-color: #293340;
+}
+
+.changePasswordMagic_container {
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 50px;
+  margin-bottom: 40px;
+  min-width: 450px;
+  min-height: var(--height);
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  /* animation: changePasswordMagicContainer_InputAnimation 0.4s forwards; */
+}
+
+.changePasswordMagic_container label{
+  position: absolute;
+  top: 20px;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #333f50;
+}
+
+.changePasswordMagic_container #old_password_check_container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction:column;
+	gap: 10px;
+	width: 63%;
+	height: 130px;
+	margin-top : 50px;
+	margin-bottom: 30px;
+}
+
+.changePasswordMagic_container #old_password_check_container span{
+	width: 100%;
+	text-align: left;
+	color: #ff1c1c;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.changePasswordMagic_container #new_password_check_container{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction:column;
+	gap: 10px;
+	width: 63%;
+	height: 160px;
+}
+
+.changePasswordMagic_container input {
+  width: var(--width);
+  min-height: var(--height);
+  outline-style: none;
+  border: 2px solid #333f50;
+  border-radius: 3px;
+  padding-left: 10px;
+  color: #333f50;
+  font-size: 16px;
+  background-color: #eceff5;
+  /* animation: changePasswordMagicContainer_InputAnimation 0.4s forwards; */
+}
+
+
+
+.changePasswordMagic_container button{
+  font-size: medium;
+  width: var(--width);
+  height: var(--height);
+  outline-style: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #333f50;
+  /* animation: changePasswordMagicContainer_InputAnimation 0.4s forwards; */
+}
+
+@keyframes changePasswordMagicContainer_InputAnimation {
+  from{
+    width: 0%;
+    min-height: 0px;
+  }to{
+    width: var(--width);
+    min-height: var(--height);
+  }
+}
+
+.changePasswordMagic_container button:disabled{
+  background-color: #c6c6c6;
+}
+
+
+.changePasswordMagic_container .cover{
+  position: absolute;
+  bottom: 30px;
+  display: block;
+  width: 400px;
+  height: 200px;
+  background-color: #ffffffcd;
+}
+
+.changePasswordMagic_container .cover.close{
+	height: 150px;
+	top: 70px;
+}
+
+/* /----------------------------------------------------------/ */
+
+.setting_container {
+  position: relative;
+  width: 75%;
+  min-height: 200px;
+  border-radius: 3px;
+  margin-top: 20px;
+  margin-left: 50px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-radius: 5px;
+
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.setting_container #setting_noti_label {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-bottom: 40px;
+}
+
+.setting_container #email_lable {
+  font-size: 1.4em;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+.setting_container div {
+  width: 100%;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.setting_container #email_noti_label {
+  font-size: 1em;
+  margin-left: 30px;
+}
+
+/* *********   Noti Toggle ************ */
+.setting_container .switch {
+  position: relative;
+  display: inline-block;
+  min-width: 60px;
+  height: 34px;
+  margin-right: 30px;
+}
+
+.setting_container .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.setting_container .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.setting_container .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.setting_container input:checked + .slider {
+  /* background-color: #00d12e; */
+  background-color: #018eca;
+  /* background-color: #333f50; */
+  /* background-color: #9fdd02; */
+}
+
+/* input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  } */
+
+.setting_container input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.setting_container .slider.round {
+  border-radius: 34px;
+}
+
+.setting_container .slider.round:before {
+  border-radius: 50%;
+}
+
+/* ***************************************************** */
+
+.avoidMeat_container {
+  position: relative;
+  width: 75%;
+  border-radius: 3px;
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-radius: 5px;
+
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.avoidMeat_container #avoidMeat_noti_label {
+  width: 95%;
+  min-height: 50px;
+  font-size: 1.8em;
+  font-weight: 600;
+  padding-top: 15px;
+  padding-left: 30px;
+  margin-bottom: 30px;
+}
+
+.avoidMeat_container #av_checkBox_container {
+  width: calc(100% - 30px);
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  margin-bottom: 30px;
+  
+}
+
+.avoidMeat_container #av_checkBox_container div{
+  	font-size: 1.3em;
+  	color: #333f50;
+ 	width: 20%;
+ 	min-height: 50px;
+ 	
+}
+
+.avoidMeat_container #av_checkBox_container div .avoidMeat {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.avoidMeat_container #av_checkBox_container div .avoidMeat:checked {
+  	/* accent-color: green; */
+  accent-color: #018eca;
+}
+
+
+ /************** POPUP ******************* */
+
+ .info_popup_container {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #ececece4;
+    border-radius: 5px;
+}
+
+.info_popup_container.open{
+  /* animation: openPopupAnimation 0.4s forwards; */
+  display: flex;
+}
+
+
+@keyframes openPopupAnimation {
+  from{
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    right: 50%;
+    opacity: 0;
+    
+  }
+  to{
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 1;
+    
+  }
+}
+
+.info_popup_container .closePopupBtn{
+  position: absolute;
+  top:5px;
+  right: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  outline-style: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333f50;
+  transition: background-color 0.2s ease-in-out;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.info_popup_container .closePopupBtn:hover{
+  background-color: #de1f1f;
+}
+.info_popup_container .closePopupBtn i{
+  color: #fff;
+  font-size: 1.5em;
+}

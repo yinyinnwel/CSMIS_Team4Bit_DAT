@@ -1,0 +1,144 @@
+.container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #aaaaaa;
+}
+
+.login_container{
+    min-width: 800px;
+    max-width: 800px;
+    min-height: 500px;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.login_left{
+    width: 400px;
+    height: 500px;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: #333f50;
+}
+
+.welcome_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    
+}
+
+.welcome_container label {
+    font-size: 14px;
+    color: #cdcdcd;
+}
+
+.login_right{
+    position: relative;
+    width: 400px;
+    height: 500px;
+    border-radius: 0 5px 5px 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+#companyLogo{
+	position: absolute;
+	top:50px;
+	width: 110px;
+	height: auto;
+	left: 50%;
+    transform: translate(-50%, -50%);
+	
+}
+
+#login_Label{
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-weight: 600;
+    color: #333f50;
+}
+
+.login_content{
+	position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 35px;
+    padding-top: 60px;
+    
+}
+
+.login_content #invaliduserBox{
+	position: absolute;
+	top: 100px;
+	border-radius: 3px;
+	color: #fff;
+	width: 270px;
+	height: 35px;
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ff6262;
+}
+
+.login_content > input{
+    outline-style: none;
+    border: 2px solid #333f50;
+    width: 250px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 16px;
+    color: #333f50;
+    border-radius: 2px;
+    background-color: #333f500f;
+}
+
+.login_content > #loginBtn{
+    outline-style: none;
+    border: none;
+    width:265px;
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 2px;
+    background-color: #333f50;
+    cursor: pointer;
+    margin-top: 50px;
+}
+.login_content > #loginBtn:hover{
+    background-color: #425167;
+}
+
+.login_content > a {
+	font-size: 16px;
+	font-weight: 600;
+    color: goldenrod;
+}
+.login_content > a:hover{
+	color: #c1941c;
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+  <link rel="stylesheet" th:href="@{/css/meal_setup.css}" />
+
+  <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+  
+  <link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+  
+  <title>Lunch</title>
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+  <div class="nav_container">
+    <div class="navi_left">
+      <i class="fa-solid fa-bars toggle_icon"></i>
+      <label class="pagingLabel">Lunch - Lunch Menu Upload</label>
+  </div>
+
+    <div class="navi_right">
+      <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}" ></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+  </div>
+
+
+  <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+  <div class="center_container">
+  
+    <form th:action="@{/DAT/lunch}">
+    	<button type="submit" class="closePopupBtn"><i class="fa-solid fa-xmark"></i></button>
+    </form>
+    
+    
+    <form th:action="@{/DAT/lunch_menu_import}" method="POST" class="inputFile_container" enctype="multipart/form-data">
+      <input id="inputFile" type="file" name="pdfFile" accept="application/pdf" required="required"/>
+      <button id="saveFileBtn">Save</button>
+      <span>for</span>
+      <select name="saveMenuOption" class="filter_dropdown">
+      	<option value="this" selected="selected">This Week</option>
+      	<option value="next">Next Week</option>
+      </select>
+    </form>
+    
+    <div th:class="${showMealContainer_className}">
+      <h1>There is no data</h1>
+      <embed th:attr="src='data:application/pdf;base64,' + ${thispdf}"
+             type="application/pdf" 
+             width="80%"
+             height="95%"
+      >
+    </div>
+  </div>
+
+
+
+  
+<script th:src="@{/js/js.js}"></script>
+
+
+
+
+</body>
+
+
+</html>

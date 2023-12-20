@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch</title>
+    
+    <link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+   	<script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/lunchRegisteredStaffList.css}">
+
+
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Lunch - Staff List with Registered Lunch Plans</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+
+        <form th:action="@{/DAT/lunch}">
+    		<button type="submit" class="close"><i class="fa-solid fa-xmark"></i></button>
+    	</form>
+
+
+        <!-- <button class="refreshBtn">Refresh</button> -->
+
+        <form th:action="@{/DAT/lunch_registered_staff_list_search}" class="search_upload_container">
+        	
+        	<input id="tmpMonthPickerValue" name="tempMonthPicker" th:value="${monthValue}" type="hidden" />	
+        
+            <div class="search_container">
+                <div class="searchReplace_container">
+                    <input type="search" name="searchValue" th:value="${searchValue}" placeholder="Search here..." />
+                    <button>Search</button>
+                </div>
+					
+                <span>Filter By : </span>
+                <select class="filter_dropdown" name="filterBy">
+                    <option value="staffId" th:selected="${filterBy.equals('staffId')}">Staff Id</option>
+                    <option value="username" th:selected="${filterBy.equals('username')}">Username</option>
+                </select>
+
+            </div>
+
+        </form>
+
+        <form th:action="@{/DAT/lunch_registered_staff_list_search_month}" method="POST" class="monthPickerContainer">
+            <label id="selectMonth_label">Select Month : </label>
+            <input class="monthPicker" name="monthPicker" th:value="${monthValue}" type="month" />
+            <button type="submit" id="confirmMonthBtn">Confirm</button>
+        </form>
+
+        <div class="total_div">
+            <label>Found :
+                <span th:text="${staff_list.size()}"></span>
+            </label>
+        </div>
+        <!-- ******************* No data ***************  -->
+        
+        <label th:class="${staff_list.isEmpty() ? 'noData open' : 'noData'}">No Data Found!</label>
+
+        <!-- ****************** Table ***************** -->
+
+        <div class="table_container">
+            <table class="main_table">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Staff ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="staff, status : ${staff_list}">
+                        <td th:text="${status.count}"></td>
+                        <td th:text="${staff.staffId}"></td>
+                        <td th:text="${staff.name}"></td>
+                        <td th:text="${staff.department=='' ? '- - -' : staff.department}"></td>
+                        <td th:text="${staff.team=='' ? '- - -' : staff.team}"></td>
+                        <td th:text="${(staff.status==1) ? 'Active' : 'Inactive'}">Active</td>
+                        <td>
+                        	<input type="hidden" th:value="${staff.role=='ROLE_ADMIN' ? 'Admin' : 'Staff'}" />
+                        	<input type="hidden" th:value="${staff.staffId}" />
+                        	<input type="hidden" th:value="${staff.name}" />
+                        	<input type="hidden" th:value="${staff.lunch_register_id}" />
+                        	<input type="hidden" th:value="${staff.registered_date}" />
+                        	<input type="hidden" th:value="${staff.register_for}" />
+                        	<input type="hidden" th:value="${staff.updated_date}" />
+                        	<input type="hidden" th:value="${staff.register_status}" />
+                            <button id="staff_info_btn">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- ****************** Popup Container ************************ -->
+
+        <div class="info_popup_container">
+
+            <button class="closePopupBtn"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="staff_detail_container">
+                <label id="staffDetail_label">Detail of Lunch Registered <span>Staff</span></label>
+                <div>
+                    <span id="infoText">Role</span>
+                    <span class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Staff ID</span>
+                    <span class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Name</span>
+                    <span class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Registered At</span>
+                    <span class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Last Updated At</span>
+                    <span class="infoText"></span>
+                </div>
+
+
+                <div id="calender_container">
+                    <table id="mini_table" class="calender">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                
+                
+
+            </div>
+
+			<div class="calender_description_container">
+                <div>
+                	<span style="--color: #58ff58;"></span>
+                	<span>Take Lunch</span>
+                </div>
+                <div>
+                	<span style="--color: #ff6865;"></span>
+                	<span>Cancel Lunch</span>
+                </div>
+                <div>
+                	<span style="--color: #f4ff2c;"></span>
+                	<span>Public Holiday</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/lunchRegisteredStaffList.js}"></script>
+
+</body>
+
+</html>

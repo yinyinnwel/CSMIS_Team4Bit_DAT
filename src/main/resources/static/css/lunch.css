@@ -1,0 +1,758 @@
+body{
+    /* font-family: "helvetica neue", helvetica, arial, sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    background-color: #e1e8f0;
+    overflow: hidden;
+  }
+
+/*-------------- Connection --------------------*/
+
+.connectionContainer{
+	position: absolute;
+	z-index: 20;
+	bottom: -30px;
+	left: 0;
+	right: 0;
+	min-height: 30px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.connectionContainer.offline{
+	background: #ff9595;
+	animation: offlineAnimation 0.5s forwards;
+}
+@keyframes offlineAnimation{
+	from{
+		bottom: -30px;
+	}
+	to{
+		bottom: 0px;
+	}
+}
+.connectionContainer.online{
+	background: #37ff69;
+	animation: onlineAnimation 5s forwards;
+}
+@keyframes onlineAnimation{
+	0%,100%{
+		bottom: -30px;
+	}
+	30%,70%{
+		bottom: 0px;
+	}
+}
+.connectionContainer #connection_status{
+	color: #fff;
+	
+}
+
+/*====================================*/
+.card {
+    background-color: #333f50;
+    cursor: pointer;
+    
+}
+
+.card1 {
+    background-color: white;
+}
+
+#lunchContent{
+	min-height: 170px;
+    max-height: 170px;
+}
+
+
+  .center_container {
+		overflow-y: auto;
+	}
+	
+.center_container .card:hover{
+  background-color: #2d3745;
+}
+.center_container .card1:hover{
+  background-color: white;
+}
+
+.containercost {
+		/* width: 93%; */
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -30px;
+	}
+
+
+
+.center_container .editCostBtn{
+  width: 80px;
+  height: 40px;
+  border: none;
+  outline-style: none;
+  color: #fff;
+  border-radius: 3px;
+  background-color: #333f50;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  
+}
+
+.center_container .editCostBtn:hover{
+  background-color: #2a3443;
+}
+
+  /************ This is CSS with no fking Bootstrap ********/
+  .nav_container{
+    position: absolute;
+    top: 0;
+    left: 200px;
+    right: 0;
+    min-height:60px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: left 0.4s ease-in-out;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+  .nav_container.close {
+    left: 80px;
+  }
+  
+  /* background-color: #333f50; */
+  .navi_left {
+    width: 100%;
+    height: 60px;
+    color: #333f50;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    padding-left: 10px;
+  }
+  
+  .navi_left i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    border-radius: 5px;
+  }
+  
+  .navi_left i:hover {
+    background-color: #f7f7f7;
+  }
+  
+  .navi_left > .pagingLabel{
+    font-size: 1.6em;
+    font-weight: 600;
+    
+  }
+  
+  .navi_right {
+    color: #333f50;
+    min-width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5px 20px 5px 10px;
+  }
+  
+  .navi_profile_container{
+    position: relative;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f7f7f7;
+  }
+  
+  .navi_profile_container div:nth-child(1) {
+	position:relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+
+}
+
+.navi_profile_container div:nth-child(1) i{
+	position: absolute;
+	right: 5px;
+}
+
+.navi_profile_container div:nth-child(1) #username{
+	text-align: center;
+	max-width: 130px;
+	min-width: 130px;
+}
+  
+  .navi_profile_container.open {
+    background-color: #f0f0f0;
+    border: 2px solid #fff;
+    outline: 3px solid #002b6689;
+  }
+  
+  
+  .navi_profile_container:hover{
+  background-color: #e3e3e3;
+}
+
+  
+  .navi_profile_container #username {
+    font-size: 1em;
+    font-weight: 500;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  #profile_setting{
+    display: none;
+    position: absolute;
+    top: 56px;
+    right: -12px;
+    width: 220px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px 10px;
+    border-radius: 5px;
+    background-color: white;
+    cursor: default;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    z-index: 50;
+  }
+  
+  .navi_profile_container.open #profile_setting{
+    display: flex;
+  }
+  #profile_setting form{
+	width: 100%;
+}
+  #profile_setting #profile_content{
+    color: #333f50;
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  #profile_setting #profile_content:hover {
+    background-color: #dadada;
+  }
+  #profile_content i {
+    color: #333f50;
+    font-size: 1.5em;
+    margin-left: 20px;
+  }
+  
+  /* ************ Drawer *********** */
+  
+  .drawer-container {
+      position: absolute;
+      display:flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 200px;
+      background-color: #333f50;
+      transition: width 0.4s ease-in-out;
+      overflow: hidden;
+      z-index: 50;
+    }
+  
+    .drawer-container.close{
+      width: 80px;
+    }
+  
+    
+    .drawer_container_top{
+      width: 100%;
+      min-height: 61px;
+      max-height: 61px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 5px;
+      border-bottom: 1px solid #424f62;
+    }
+  
+    .drawer_container_top #logo {
+      height: 60px;
+      width: auto;
+      transition: height 0.4s ease-in-out;
+    }
+  
+    .drawer-container.close .drawer_container_top #logo{
+      height: 48px;
+    }
+  
+    .drawer_content{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+      gap: 20px;
+      padding-top: 20px;
+      background: transparent;
+    }
+    
+    .drawer_content .content{
+    position: relative;
+    	width: 100%;
+   }
+   
+   .content.selected #tab11{
+  	z-index: 10;
+  	position: absolute;
+  	top: -20px;
+  	left: 0;
+  	right: 0;
+  	min-height: 15px;
+  	background: #e1e8f0;
+  }
+  .content.selected #tab1{
+  	z-index: 10;
+  	position: absolute;
+  	top: -5px;
+  	left: 0;
+  	right: 0;
+  	min-height: 25px;
+  	background: #e1e8f0;
+  }
+
+  .content.selected #tab1::before{
+  	content: '';
+  	z-index: 10;
+  	position: absolute;
+  	top: -15px;
+  	left: 0;
+  	right: 0;
+  	min-height: 15px;
+  	border-radius: 0 0 20px 0;
+  	background: #333f50;
+  }
+
+  .content.selected #tab22{
+  	z-index: 10;
+  	position: absolute;
+  	bottom: -20px;
+  	left: 0;
+  	right: 0;
+  	min-height: 15px;
+  	background: #e1e8f0;
+  }
+  .content.selected #tab2{
+  	z-index: 10;
+  	position: absolute;
+  	bottom: -5px;
+  	left: 0;
+  	right: 0;
+  	min-height: 25px;
+  	background: #e1e8f0;
+  }
+  
+  .content.selected #tab2::before{
+  	content: '';
+  	z-index: 10;
+  	position: absolute;
+  	bottom: -15px;
+  	left: 0;
+  	right: 0;
+  	min-height: 15px;
+  	border-radius: 0 20px 0 0;
+  	background: #333f50;
+  }
+  
+    .content a{
+    z-index: 20;
+    text-decoration: none;
+      position: relative;
+      width: 100%;
+      min-height: 45px ;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      cursor: pointer;
+      background: #333f50;
+      transition: background-color 0.2s ease-in-out;
+    }
+    
+    .content.selected a{
+    	border-radius: 0 25px 25px 0;
+      background-color: #445061;
+      
+    }
+    .content.selected a::before {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 35px;
+      top: 5px;
+      left: 0;
+      border-radius: 0 3px 3px 0;
+      background-color: #fff;
+      animation: selectedContentPopupAnimation 0.3s forwards;
+    }
+    .content a:hover {
+      background-color: #445061;
+    }
+
+    @keyframes selectedContentPopupAnimation {
+      from{
+        left: -5px;
+      }
+      top{
+        left: 0;
+      }
+    }
+  
+    .content a i{
+      color: #fff;
+      margin-left: 23px;
+      font-size: 1.5em;
+    }
+  
+    .content.selected a i{
+      animation: naviIconInOutAnimation 0.3s forwards;
+    }
+  
+    @keyframes naviIconInOutAnimation {
+      0%{
+        font-size: 1.5em;
+      }
+      50%{
+        font-size: 1.7em;
+      }
+      100%{
+        font-size: 1.5em;
+      }
+    }
+    .content:nth-child(2) a i,
+    .content:nth-child(3) a i{
+      margin-left: 26px;
+      margin-right: 5px;
+    }
+    
+    .content:nth-child(4) a i{
+    margin-left: 29px;
+    margin-right: 9px;
+    font-size: 0.95em;
+    /* z-index: 10; */
+  }
+  .content:nth-child(4) a i:nth-child(2){
+  	position: absolute;
+  	font-size:1.8em;
+  	top: 8.5px;
+  	left: -6px;
+  	color: #fff;
+  	/* z-index: 9; */
+  }
+  
+    .content:nth-child(7) a i{
+      margin-left: 30px;
+      margin-right: 5px;
+    }
+    .content:nth-child(8) a i{
+    font-size: 1.5em !important; 
+      margin-left: 25px;
+      margin-right: 5px;
+    }
+    .content:last-child a i{
+    font-size: 1.5em !important; 
+      margin-left: 25px;
+      margin-right: 5px;
+    }
+  
+    .content a span{
+    	position: absolute;
+  		left: 70px;
+      	color: #fff;
+      	opacity: 0;
+      	font-size: 16px;
+      	overflow: hidden;
+      	text-overflow: ellipsis;
+      	white-space: nowrap;
+      	animation: showPageLabelAnimation 0.4s forwards;
+    }
+  
+  
+    .drawer-container.close .content a span{
+      animation: removePageLabelAnimation 0.3s forwards;
+    }
+  
+    
+    @keyframes showPageLabelAnimation {
+      0% {
+        font-size: 0px;
+        display: none;
+      }
+      50%{
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+       font-size: 16px;
+       transition: font-size 0.3s ease-in-out;
+       
+      }
+    }
+  
+    @keyframes removePageLabelAnimation {
+      from {
+        opacity: 1;
+       font-size: 16px;
+      }
+      to {
+        opacity: 0.3;
+       font-size: 0px;
+       display: none;
+      }
+    }
+  
+    .drawer_container_bottom {
+      width: 100%;
+      min-height: 45px;
+      max-height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+  
+    .drawer_container_bottom #logo_4BIT_Icon,
+    .drawer_container_bottom #logo_4BIT_Text{
+      height: 30px;
+      width: auto;
+      transition: height 0.4s ease-in-out;
+    }
+  
+    .drawer-container.close .drawer_container_bottom #logo_4BIT_Icon{
+      display: none;
+    }
+    
+    .drawer-container.close .drawer_container_bottom #logo_4BIT_Text{
+      height: 25px;
+    }
+  
+  
+  
+    /* *********** this is container *************** */
+  
+  
+    .center_container{
+    height: 90vh;
+      position: absolute;
+      top: 70px;
+      left: 220px;
+      bottom: 10px;
+      right: 10px;
+      transition: left 0.4s ease-in-out;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
+    }
+  
+    .center_container.width{
+      left: 100px;
+    }
+
+    
+
+
+    /************* POpup COntainer ***************/
+
+    .popup_container {
+      z-index: 100;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background-color: #ececece4;
+      border-radius: 5px;
+      
+    }
+    .popup_container.open{
+      display: flex;
+      animation: openPopupAnimation 0.4s forwards;
+    }
+
+    @keyframes openPopupAnimation {
+      from{
+        top: 50%;
+        left: 50%;
+        bottom: 50%;
+        right: 50%;
+        opacity: 0;
+        
+      }
+      to{
+        top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+        opacity: 1;
+        
+      }
+    }
+ 
+
+    .popup_container .closePopup{
+      position: absolute;
+      top:5px;
+      right: 5px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      outline-style: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #333f50;
+      transition: background-color 0.2s ease-in-out;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+  }
+  .popup_container .closePopup:hover{
+      background-color: #de1f1f;
+  }
+  .popup_container .closePopup i{
+      color: #fff;
+      font-size: 1.5em;
+  }
+
+
+  .popup_container .edit_cost_container{
+    width: 400px;
+    min-height: 350px;
+    max-height: 350px;
+    color: #333f50;
+    display: none;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 5px;
+    padding-top: 20px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+  }
+
+  .popup_container.open .edit_cost_container{
+    display: flex;
+    animation: openPopupAnimationforEditDiv 0.3s forwards;
+  }
+
+  .edit_cost_container h2{
+    margin-bottom: 30px;
+  }
+  .edit_cost_container div{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+  .edit_cost_container div span{
+    font-size: 18px;
+    font-weight: 550;
+  }
+
+  .edit_cost_container div input{
+    width: 40%;
+    height: 40px;
+    outline-style: none;
+    border: 2px solid #333f50;
+    border-radius: 3px;
+    padding-left: 10px;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3) inset;
+  }
+
+  .edit_cost_container .saveEditCostBtn{
+    width: 80%;
+    height: 40px;
+    border-radius: 3px;
+    color: #fff;
+    outline-style: none;
+    border: none;
+    background-color: #333f50;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .edit_cost_container .saveEditCostBtn:hover{
+    background-color: #2f3948;
+  }
+
+  @keyframes openPopupAnimationforEditDiv {
+    from{
+      width: 0;
+      min-height: 0;
+      max-height: 0;
+      opacity: 0;
+    }
+    to{
+      width: 400px;
+      min-height: 350px;
+      max-height: 350px;
+      opacity: 1;
+    }
+  }
+
+    
+@media (max-width: 1230px){
+	.lunchCard {
+		margin-bottom: 100px;
+	}
+	
+}
+
+    @media (max-width: 995px) {
+    .lunchCard {
+    	margin-top: 20px;
+		margin-bottom: 200px;
+	}
+      .containercost {
+		bottom: -170px;
+	}
+	/* .drawer-content {
+        width: 100%;
+        right: -100%;
+        transform: translateX(100%);
+      }
+      
+      .drawer-open .drawer-content {
+        transform: translateX(0);
+      } */
+    }

@@ -1,0 +1,445 @@
+.center_container .close{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    outline-style: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333f50;
+    transition: background-color 0.2s ease-in-out;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 50;
+}
+.center_container .close:hover{
+    background-color: #de1f1f;
+}
+.center_container .close i{
+    color: #fff;
+    font-size: 1.5em;
+}
+
+
+.center_container .saveLunchRegisterationBtn{
+    position: absolute;
+    right: 30px;
+    bottom: 50px;
+    width: 120px;
+    height: 45px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #fff;
+    outline-style: none;
+    border-radius: 5px;
+    border: 3px outset #fff;
+    background-color: #333f50;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 50;
+}
+.center_container .saveLunchRegisterationBtn:hover{
+    background-color: #00ac00;
+    transition: 0.5s;
+}
+
+.lunch_registeration_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.lunch_registeration_container .calendarChangeDiv{
+	display: none;
+	margin-bottom: 10px;
+}
+.lunch_registeration_container .calendarChangeDiv.show{
+	display: block;
+}
+.lunch_registeration_container .calendarChangeDiv > #calendarChangeBtn{
+	width: 180px;
+	min-height: 30px;
+	max-height: 30px;
+	outline: none;
+	border: 2px solid #fff;
+	border-radius: 15px;
+	background: #333f50;
+	color: #fff;
+	box-shadow: 0 0 3px rgba(0,0,0,0.4);
+	transition: 0.5s;
+	cursor: pointer;
+	
+}
+.lunch_registeration_container .calendarChangeDiv > #calendarChangeBtn:hover{
+	background: #009200;
+	box-shadow: 0 0 6px rgba(0,0,0,0.4);
+}
+
+.lunch_registeration_container #lunch_registeration_date_label{
+    text-align: center;
+    color: #333f50;
+    line-height: 2em;
+    font-size: 2em;
+    font-weight: 600;
+    width: 100%;
+    min-height: 50px;
+}
+
+
+.lunch_registeration_scroll_container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.lunch_registeration_scroll_container::-webkit-scrollbar{
+    width: 0.8em;
+  }
+
+  
+  .lunch_registeration_scroll_container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  }
+  
+  .lunch_registeration_scroll_container::-webkit-scrollbar-thumb{
+  background-color: #333f50;
+  border-radius: 15px;
+  }
+  
+  .lunch_registeration_scroll_container::-webkit-scrollbar-thumb:hover{
+  background-color: #3d4a5e;
+  }
+
+  .lunch_registeration_scroll_container div:nth-child(1){
+  position: relative;
+    margin-top: 20px;
+    width: 630px;
+    min-height: 40px;
+    max-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .lunch_registeration_scroll_container div:nth-child(1) .refreshRegisterationTableBtn{
+    width: 100px;
+    min-height: 35px;
+    outline-style: none;
+    border: 2px outset #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #00ac00;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .lunch_registeration_scroll_container div:nth-child(1) .refreshRegisterationTableBtn:hover{
+    background-color: #009200;
+    
+  }
+
+.lunch_registeration_scroll_container table{
+    width: 600px;
+    
+}
+
+table thead tr{
+    height: 40px;/*  */
+    border: 1px solid black;
+    background-color: #333f50;
+}
+
+thead tr th{
+    color: #fff;
+    text-align: center;
+    font-size: 0.8em;/*  */
+    font-weight: 600;
+    min-width: 70px;/*  */
+    max-width: 70px;/*  */
+    border: 3px outset #f1f1f1;
+    border-width: 3px 3px;
+}
+
+thead tr th:nth-child(1) {
+    background-color: #fff;
+    border: none;
+}
+tbody tr th,
+tbody tr td{
+    position: relative;
+    color: #333f50;
+    font-size: 1.7em;/*  */
+    font-weight: 800;
+    text-align: center;
+    min-width: 70px;/*  */
+    max-width: 70px;/*  */
+    height: 70px;/*  */
+    
+    /* background-color: #41ff41; */
+}
+
+tbody tr th{
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    background-color: #333f50;
+    border: 3px outset #e4e4e4;
+    
+}
+
+
+
+tbody tr td.disable{
+    color: #c1c1c1;
+    background-color: gray;
+}
+
+
+
+tbody tr td input[type="checkbox"] {
+    content: 'NO';
+    position: absolute;
+    top: -2px;
+    left: -3px;
+    min-width: 70px;/*  */
+    max-width: 70px;/*  */
+    min-height:70px;/*  */
+    max-height: 70px;/*  */
+    transition: transform 0.6s ease-in-out;
+}
+tbody tr td input[type="checkbox"]:checked{
+    accent-color: #ffffff;
+    transform: rotateY(360deg);
+    
+}
+tbody tr td.holiday input[type="checkbox"]{
+    transform: none;
+}
+
+tbody tr td label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 5px;/*  */
+    background-color: #ff4f4f;
+    cursor: pointer;
+    transition: background-color 0.3s,color 0.7s,transform 0.6s ease-in-out;
+}
+
+tbody tr td label.checked{
+    color: #333f50;
+    background-color: #41ff41ec;
+    transform: rotateY(360deg);
+}
+tbody tr td label:hover{
+    border: 1px solid #333f50;
+}
+
+tbody tr td.holiday{
+    color: #fff;
+    background-color: #ffdc16;
+}
+
+
+tbody tr td.holiday label{
+    color: #fff;
+    font-size: 1em;
+    background-color: #ffdc16;
+    transform: none;
+}
+tbody tr td.holiday label:hover{
+	border: none;
+	cursor: default;
+}
+
+tbody tr td .dayCover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background-color: #656565a4;
+    cursor: not-allowed;
+}
+tbody tr td .dayCover.open{
+    display: block;
+}
+
+
+/***********************Table Explanation Container*************/
+
+.tableExplanation_container{
+    position: absolute;
+    top: 18%;
+    right: 1.5%;
+    width: 19%;
+    min-width: 230px;
+    min-height: 0px;
+    max-height: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    border-radius: 15px;
+    border-color: #333f50 #bec8d6;
+    border-style: solid;
+    border-width: 8px 1px;
+    background: #ffff;
+    box-shadow: 0 0 8px 1px rgba(0,0,0,0.1) inset;
+    animation: lunchExplanationAnimation 0.5s 0.5s forwards;
+    overflow: hidden;
+}
+
+@keyframes lunchExplanationAnimation{
+	from{
+		min-height: 0px;
+    	max-height: 0px;
+	}to{
+		min-height: 300px;
+    	max-height: 300px;
+	}
+}
+
+.tableExplanation_container #exp_container{
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80%;
+    max-width: 80%;
+    min-height: 40px;
+}
+.tableExplanation_container #exp_container:nth-child(1) span:nth-child(1){
+	transform: translateX(-10px);
+}
+
+
+.tableExplanation_container #exp_container span:nth-child(1){
+    min-width: 20px;
+    min-height: 20px;
+    border: 2px solid #fff;
+    background-color: var(--color);
+    margin-right: 10px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+
+.tableExplanation_container #exp_container span:nth-child(2){
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333f50;
+} 
+
+
+/****************** avoidMeat_container ***********************/
+
+
+
+.myAvoidMeat_container{
+    color: #333f50;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 67%;
+    min-width: 650px;
+   
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.myAvoidMeat_container #avoidMeatLabel{
+    font-size: 1.7em;
+    font-weight: 600;
+    /* border: 1px solid black; */
+    padding-top: 10px;
+    padding-left: 10px;
+    min-height: 50px;
+    margin-bottom: 10px;
+}
+
+
+.myAvoidMeat_container #av_checkBox_container {
+  width: calc(100%);
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  
+}
+
+#av_checkBox_container > div{
+  	font-size: 1.3em;
+  	color: #333f50;
+  	margin-top: 0 !important;
+  	display: flex !important;
+  	align-items: center;
+  	justify-content: center;
+ 	min-width: 25% !important;
+ 	max-width: 25% !important;
+ 	min-height: 50px;
+ 	
+}
+
+
+#av_checkBox_container div .avoidMeat {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+#av_checkBox_container div .avoidMeat:checked {
+  	/* accent-color: green; */
+  accent-color: #018eca;
+}
+    
+  
+  
+  
+  /*   
+    @media screen and (max-width: 768px) {
+      .drawer-content {
+        width: 100%;
+        right: -100%;
+        transform: translateX(100%);
+      }
+      
+      .drawer-open .drawer-content {
+        transform: translateX(0);
+      }
+    } */
+    

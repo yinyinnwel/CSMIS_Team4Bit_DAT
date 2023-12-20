@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch</title>
+    
+    <link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+  	<link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/lunchList_Today.css}">
+    
+    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+
+    <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Lunch - DoorLog Transition Import (Today)</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+        
+        <form th:action="@{/DAT/lunch}">
+    		<button type="submit" class="close"><i class="fa-solid fa-xmark"></i></button>
+    	</form>
+    	
+    	<div class="help" sec:authorize="hasRole('ADMIN')">
+			<span id="help_icon">?</span>
+			<span id="help_title">DoorLog Transition Excel/CSV file format?</span>
+		</div>
+        
+        <div class="navi_lunch_container">
+            <form th:action="@{/DAT/lunch_list_today_all}">
+            	<button th:class="${option.equals('all') ? 'navi_lunch_btn selected' : 'navi_lunch_btn'}">All</button>
+            </form>
+            <form th:action="@{/DAT/lunch_list_today_total_eat}">
+            	<button th:class="${option.equals('total_eat') ? 'navi_lunch_btn selected' : 'navi_lunch_btn'}">Total Have Lunch</button>
+            </form>
+            <form th:action="@{/DAT/lunch_list_today_total_not_eat}">
+            	<button th:class="${option.equals('total_not_eat') ? 'navi_lunch_btn selected' : 'navi_lunch_btn'}">Total Cancel Lunch</button>
+            </form>
+            <form th:action="@{/DAT/lunch_list_today_total_eat_noreg}">
+            	<button th:class="${option.equals('total_eat_noreg') ? 'navi_lunch_btn selected' : 'navi_lunch_btn'}">Total Have Lunch(Not Register)</button>
+            </form>
+            
+        </div>
+
+        <div class="search_upload_container">
+            <form th:action="@{/DAT/lunch_list_today_search}" class="search_container">
+                <input type="search" name="searchValue" th:value="${searchValue}" placeholder="Search here..."/>
+                <button type="submit">Search</button>
+
+                <span>Filter By : </span>
+                <select class="filter_dropdown" name="filterBy">
+                    <option value="staffId" th:selected="${filterBy.equals('staffId')}">Staff Id</option>
+                    <option value="username" th:selected="${filterBy.equals('username')}">Username</option>
+                </select>
+            </form>
+            <form class="uploadFile_container" method="POST" 
+            		th:action="@{/DAT/upload-doorLog-csv}" 
+            		enctype="multipart/form-data" >
+                <div class="inputFile_container">
+                    <input id="inputFile" name="file" type="file" required="required"/>
+                    <button id="saveFileBtn">Save</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="total_div">
+            <label>Total :
+                <span th:text="${transactions.size()}"></span>
+            </label>
+            <label>Total Have Lunch : 
+                <span th:text="${totalEat}"></span>
+            </label>
+            <label>Total Cancel Lunch : 
+                <span th:text="${totalNotEat}"></span>
+            </label>
+            <label>Total Have Lunch (Not Register) : 
+                <span th:text="${totalEatNotReg}"></span>
+            </label>
+            <label>Total Cost : 
+                <span><span th:text="${totalCost}"></span> MMK</span>
+            </label>
+        </div>
+        <!-- ******************* No data ***************  -->
+        
+        <label th:class="${transactions.isEmpty() ? 'noData open' : 'noData'}">No Data Found!</label>
+
+        <!-- ****************** Table ***************** -->
+
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Staff ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">DoorLog No</th>
+                        <th scope="col">Date/Time</th>
+                        <th scope="col">Company Cost</th>
+                        <th scope="col">Staff Cost</th>
+                        <th scope="col">Register</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="transaction, status : ${transactions}">
+                        <td th:text="${status.count}"></td>
+                        <td th:text="${transaction.staffId}"></td>
+                        <td th:text="${transaction.name}"></td>
+                        <td th:text="${transaction.doorLogNo}"></td>
+                        <td th:text="${transaction.date_time==null ? '- - -' : transaction.date_time}"></td>
+                        <td th:text="${transaction.company_cost}"></td>
+                        <td th:text="${transaction.staff_cost}"></td>
+                        <td>
+                        	<input th:class="${transaction.register==1 ? 'yes' : 'no'}" type="radio" readonly="readonly" checked="checked"/>
+                        </td>
+                        <td th:text="${transaction.status==1 ? 'Eat' : 'Not Eat'}"></td>
+                    </tr>
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- ===============  Help Popup Container ====================== -->
+		<div class="helpPopupContainer">
+	
+			<button class="closeHelpPopupBtn"><i class="fa-solid fa-xmark"></i></button>
+			
+			<div class="helpCenterContainer">
+				<label>DoorLog Transition Excel / CSV File Format</label>
+				
+				<img alt="holiday_file_format_img" th:src="@{/images/doorlog_file_format.png}"/>
+				
+				<span>- Please import the Excel/CSV file as shown in above picture.</span>
+			</div>
+		
+		</div>
+
+    </div>
+    
+    <div class="loading_popup_container">
+    	 <!-- ****************** Loading Container ************************ -->
+        
+        	<div class="loading_container">
+        		<span class="box"></span>
+        		<span class="box"></span>
+        		<p>Importing data ...</p>
+        	</div>
+    </div>
+    
+      <div th:class="${updateMessage_class}">
+		<div id="iconBox">
+			<lord-icon src="https://cdn.lordicon.com/yqzmiobz.json"
+				colors="primary:#00d736"
+				trigger="loop" style="width:50px;height:50px"> 
+			</lord-icon>
+		</div>
+		<div id="messageBox">
+			<span >SUCCESS!</span>
+			<span th:text="${updateMessage}"></span>
+		</div>
+	</div>
+
+
+    <script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/lunch.js}"></script>
+</body>
+
+</html>

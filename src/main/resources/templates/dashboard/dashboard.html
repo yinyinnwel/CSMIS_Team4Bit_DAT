@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSMIS - Dashboard</title>
+    
+    
+    <link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+    
+    <link rel="stylesheet" th:href="@{/css/lineChart.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+
+<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+    <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+
+</head>
+ 
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Dashboard</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content selected" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+
+        <div class="dashboard_cotainer">
+            <div class="show_container menu" style="--color: blue">
+                <!-- <i class="fa-solid fa-calendar-days"></i> -->
+				<lord-icon src="https://cdn.lordicon.com/qtxqkhzr.json"
+					trigger="hover" colors="primary:#7d8590"
+					style="width:150px;height:150px" > 
+				</lord-icon>
+				<label>View Lunch Menu</label>
+            </div>
+            <div class="show_container Tstaff" style="--color: blue">
+                <i class="fa-solid fa-users"></i>
+                <label>Total Staff<br><br><span th:text="${total_staff}"></span></label>
+            </div>
+            <div class="show_container LRstaff" style="--color: blue">
+                <i class="fa-solid fa-users-line"></i>
+                <label>Today Lunch Registered Staff<br><br><span th:text="${todayLunchRegisteredStaffs}"></span></label>
+            </div>
+            <div class="show_container mail" style="--color: blue" sec:authorize="hasRole('ADMIN')">
+                <i class="fa-solid fa-envelope"></i>
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <!-- <i class="fa-solid fa-envelope-open"></i> -->
+                <label>Announce <br> Mail</label>
+            </div>
+        </div>
+
+
+        <div class="dashboard_cotainer">
+
+            <div class="current_restaurent_container">
+                <label id="restaurantService_label">Restaurant Service</label>
+                
+                <i class="fa-solid fa-bell-concierge"></i>
+
+                <div>
+                    <label th:text="${(activeRestaurant.name==null) ? 'No Restaurant Service' : activeRestaurant.name}" style="--font_size: 1.3em"></label>
+                    <label th:text="${activeRestaurant.phone_no}" style="--font_size: 1.6em"></label>
+                </div>
+
+				<button type="button"
+					th:class="${(activeRestaurant.name==null) ? 'addReviewBtn off' : 'addReviewBtn'}"
+					title="Add Comment">
+					<!-- <i class="fa-solid fa-comment-dots"></i> -->
+					<lord-icon 
+						src="https://cdn.lordicon.com/pkmkagva.json"
+						trigger="hover" colors="primary:#1663c7"
+						style="width:40px;height:40px;color:blue;"> 
+					</lord-icon>
+				</button>
+			</div>
+
+            <div class="lineChart_container">
+                <div class="label_container">
+                    <label>Department Analysis</label>
+                </div>
+                <div class="week">
+                    <!-- <div class="week_graph_label_container">
+                        <span>Total Register</span>
+                        <span>Total Eat</span>
+                        <span>Total Not Eat</span>
+                        <span>Total Eat<br>
+                            (Not Register)
+                        </span>
+                    </div> -->
+                    <div class="week_graph_container">
+                    
+                        <div th:each="department : ${departments}">
+                        	<div th:style="'--value: ' + ${department.malePercentage} + '%'">
+                        		<span th:text="${department.male}"></span>
+                        	</div>
+                        	<div th:style="'--value: ' + ${department.femalePercentage} + '%'">
+                        		<span th:text="${department.female}"></span>
+                        	</div>
+                        	<span id="showDepartmentNameRadio"></span>
+                        	<span class="departmentName" th:text="${department.name}"></span>
+                        </div>
+                        
+                       
+                    </div>
+					<div id="graphMaleFemaleExplain">
+						<div id="explain">
+							<label></label> <span>Male</span>
+						</div>
+						<div id="explain">
+							<label></label> <span>Female</span>
+						</div>
+					</div>
+					<div class="lineChart_explain_container">
+                        <div>
+                            <label>Organization Info</label>
+                        </div>
+                        <div>
+                        	<span>Total Department</span>
+                            <span style="--color: #1d6ece"></span>
+                            <span th:text="${totalDepartment}"></span>
+                        </div>
+                        <div>
+                        	<span>Total Team</span>
+                            <span style="--color: #d033bf"></span>
+                            <span th:text="${totalTeam}"></span>
+                        </div>
+                        <div >
+                        	<span>Total Division</span>
+                            <span style="--color: #f0ed1d"></span>
+                            <span th:text="${totalDivision}"></span>
+                        </div>
+                        
+                    </div>
+                    <!-- <div class="week_graph_percent_label_container">
+                        <span>0%</span>
+                        <span>25%</span>
+                        <span>50%</span>
+                        <span>75%</span>
+                        <span>100%</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+
+<!-- ******************* POPup Container *********************** -->
+        <div class="index_popup_container">
+
+            <button class="closePopupBtn"><i class="fa-solid fa-xmark"></i></button>
+
+            <label id="lunchMenu_Label">Lunch Menu</label>
+
+            <div class="lunchMenu current">
+                
+                <label id="weekLabel">This Week</label>
+                <span id="noMenuLabel">No Menu to show!</span>
+
+                <div class="pdf_container">
+                    <embed th:attr="src='data:application/pdf;base64,' + ${thispdf}"
+                    	type="application/pdf" 
+                        width="100%"
+                        height="100%"
+                    >
+                </div>
+            </div>
+            
+            <div class="lunchMenu next">
+                <label id="weekLabel">Next Week</label>
+                <span id="noMenuLabel">No Menu to show!</span>
+                
+                <div class="pdf_container">
+                    <embed th:attr="src='data:application/pdf;base64,' + ${nextpdf}"
+                    	type="application/pdf" 
+                        width="100%"
+                        height="100%"
+                    >
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <form th:action="@{/DAT/dashboard_mail_send}" method="POST" >
+        <div class="mail_compose_container ">
+	        <div>
+	            <label>Announcement Mail Box</label>
+	        </div>
+	        <div>
+	            <input id="mail_subject" type="text" name="mail_subject" placeholder="Subject" required="required"/>
+	            <textarea id="mail_description" name="mail_description" placeholder="Description...." spellcheck="false" required="required"></textarea>
+	        </div>
+	        <div>
+	            <button type="submit" class="sendMail_btn" disabled>
+	                <i class="fa-solid fa-paper-plane"></i>
+	            </button>
+	        </div>
+	
+	        <button type="submit" class="closeMailBoxBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </form>
+
+	<form th:action="@{/DAT/dashboard_restaurant_comment}" method="POST">
+		<div class="restaurant_comment_container">
+			<div>
+				<label>Suggestion for Current Active Restaurant</label>
+			</div>
+			<div>
+				<textarea id="comment_description" name="comment_description"
+					maxlength="1000" placeholder="Add your suggestion..."
+					spellcheck="false" required="required">
+				</textarea>
+			</div>
+		
+			<div>
+				<button type="submit" class="sendMail_btn">
+					<i class="fa-solid fa-paper-plane"></i>
+				</button>
+			</div>
+
+			<label class="letterCountLabel"><span id="letterCount">0</span>/1000</label>
+
+			<button type="button" class="closeCommentBoxBtn">
+				<i class="fa-solid fa-xmark"></i>
+			</button>
+		</div>
+		
+	</form>
+
+
+	<script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/index.js}"></script>
+
+</body>
+
+</html>

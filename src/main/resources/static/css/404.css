@@ -1,0 +1,40 @@
+body{
+    /* font-family: "helvetica neue", helvetica, arial, sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    background-color: #e1e8f0;
+  }
+
+.fOf_container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e6e6e622;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.fOf_container #animation{
+    position: absolute; 
+    top: 60%; 
+    left: 55%; 
+    transform: translate(-50%, -50%);
+}
+
+.fOf_container #fOf_message{
+    margin-top: 30px;
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    line-height: 1.7em;
+    font-size: 1.4em;
+    color: #333f50;
+}
+.fOf_container #fOf_message span{
+    font-size: 2em;
+    font-weight: 600;
+    color: #333f50;
+}

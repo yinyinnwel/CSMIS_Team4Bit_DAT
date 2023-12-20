@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSMIS - Login</title>
+    
+    <link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+   
+
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+    
+   <div class="container">
+
+        <div class="login_container">
+            <div class="login_left">
+                <img th:src="@{/images/4BIT_logo.png}" />
+                <div class="welcome_container">
+                    <label>Welcome to our Catering Management System!</label>
+                    <label>Please log in to get started and experience the convenience</label>
+                    <label>of our platform.</label>
+                </div>
+            </div>
+            <form th:action="@{/authenticateTheUser}" method="POST" class="login_right" >
+            	<img id="companyLogo" alt="logo" th:src="@{/images/DAT Logo.png}"/>
+                <label id="login_Label">CSMIS</label>
+                
+				
+                <div class="login_content">
+                	<div id="invaliduserBox" th:if="${param.error}">
+						Invalid username or password!
+					</div>
+					
+                    <input type="text" name="username" placeholder="Staff Id" value="00-00001" required="required"/>
+                    <input type="password" name="password" placeholder="Password" required="required"/>
+                    <button type="submit" id="loginBtn">Login</button>
+                    <a th:href="@{/DAT/forgot_password}">Forgot password?</a>
+                </div>
+            </form>
+        </div>
+
+   </div>
+
+</body>
+</html>

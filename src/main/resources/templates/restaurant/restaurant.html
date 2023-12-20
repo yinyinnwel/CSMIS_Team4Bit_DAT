@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSMIS - Restaurant</title>
+
+	<link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+    <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+   
+    <link rel="stylesheet" th:href="@{/css/index.css}" >
+    <link rel="stylesheet" th:href="@{/css/restaurant.css}">
+    
+   
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Restaurant List</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+    
+    	<span th:class="'errorMessage ' + ${updatedStatus ? 'show' : ''}">
+    		Update action can't be completed because there are some unpaid vouchers!
+    	</span>
+    <!-- ========================================================================================== -->
+        
+        <form th:action="@{/DAT/restaurant_search}" method="GET" class="search_upload_container">
+            <div class="search_container">
+                <input type="search" name="searchValue" placeholder="Search restaurant name..."/>
+                <button type="submit">Search</button> 
+            </div>
+        </form>
+
+        <button class="addRestaurantBtn"><i class="fa-solid fa-plus"></i>Add New Restaurant</button>
+
+        <div class="total_div">
+            <label>Total : 
+                <span th:text="${restaurants.size()}"></span>
+            </label>
+        </div>
+        <!-- ******************* No data ***************  -->
+        
+        <label th:class="${restaurants.isEmpty() ? 'noData open' : 'noData'}">No Data Found!</label>
+
+        <!-- ****************** Table ***************** -->
+
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" style="--fontSize: 15px;">No</th>
+                        <th scope="col" style="--fontSize: 15px;">Name</th>
+                        <th scope="col" style="--fontSize: 15px;">Address</th>
+                        <th scope="col" style="--fontSize: 15px;">Email</th>
+                        <th scope="col" style="--fontSize: 15px;">Phone Number</th>
+                        <th scope="col" style="--fontSize: 13px;">Status</th>
+                        <th scope="col" style="--fontSize: 13px;">Reviews</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tempRestaurant, r_status : ${restaurants}">
+                        <td th:text="${r_status.count}"></td>
+                        <td th:text="${tempRestaurant.name}"></td>
+                        <td th:text="${tempRestaurant.address}"></td>
+                        <td th:text="${tempRestaurant.email}">example@gmail.com</td>
+                        <td th:text="${tempRestaurant.phone_no}"></td>
+                        <td>
+                        	<input id="radio_status" type="hidden" th:value="${tempRestaurant.status}"/>
+                        	<input class="statusRadioBtn " type="radio" checked="checked" />
+                        </td>
+                        <td >
+                        	<form th:action="@{/DAT/restaurant_view_comment}" method="POST">
+								<input type="hidden" th:value="${tempRestaurant.id}" name="restaurantId" />
+								<button type="submit" id="restaurant_review_btn">
+									<i class="fa-regular fa-comments"></i>
+								</button>
+							</form>
+						</td>
+                        <td th:id="${restaurants.indexOf(tempRestaurant)}">
+                        
+                        	<input type="hidden" id="rs_id" th:value="${tempRestaurant.id}">
+                            <input type="hidden" id="name" th:value="${tempRestaurant.name}">
+                            <input type="hidden" id="address" th:value="${tempRestaurant.address}">
+                            <input type="hidden" id="phone_no" th:value="${tempRestaurant.phone_no}">
+                            <input type="hidden" id="email" th:value="${(tempRestaurant.email==null) ? '-----' : tempRestaurant.email}">
+                            <input type="hidden" id="status" th:value="${(tempRestaurant.status == 1) ? 'Active' : 'Inactive'}">
+                            <input type="hidden" id="createdAt" th:value="${(tempRestaurant.createdAt==null) ? '-----' : tempRestaurant.createdAt}">
+                            <input type="hidden" id="createdBy" th:value="${(tempRestaurant.createdBy=='') ? '-----' : tempRestaurant.createdBy}">
+                            <input type="hidden" id="updatedAt" th:value="${(tempRestaurant.updatedAt==null) ? '-----' : tempRestaurant.updatedAt}">
+                            <input type="hidden" id="updatedBy" th:value="${(tempRestaurant.updatedBy==null) ? '-----' : tempRestaurant.updatedBy}">
+                            <input type="hidden" id="receiver" th:value="${tempRestaurant.receiver}">
+                            
+                            <button id="restaurant_info_btn">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </button>
+                            <button id="restaurant_edit_btn">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- ****************** Popup Container ************************ -->
+		
+        <div th:class="${infoPopupContainerClass}">
+
+            <button class="closePopupBtn"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div th:class="${retaurantReviewContainerClass}">
+            	
+            
+            	<label id="reviews_label">Comments of <span th:text="${restaurantName}" style="color: goldenrod;"></span> Restaurant</label>
+            	
+            	<div class="reviews_scroll_container">
+            		<div id="review" th:each="comment, c_status : ${comments}">
+            			<span id="time" th:text="${comment.commentAt}"></span>
+            			<span id="review_text" th:text="${comment.comment}"></span>
+            			
+            		</div>
+            		
+            		
+            	</div>
+            </div>
+
+
+            <div class="restaurant_detail_container">
+                <label id="staffDetail_label">Detail of <span id="editRestaurantName" style="color:goldenrod;">Restaurant Name</span></label>
+                <div>
+                    <span id="infoText">Name</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Address</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Email</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Phone no</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Receiver</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Status</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Created at</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Created by</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Last Updated at</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Last Updated by</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+
+            </div>
+
+            <form th:action="@{/DAT/restaurant_update}" method="POST" th:object="${restaurant}" class="restaurant_info_update_container" >
+                <label id="staff_info_edit_label">Edit Restaurant</label>
+                
+                <input id="infoInput" type="hidden" th:field="*{id}"/>
+
+                <div class="top">
+                    <div class="left">
+                    	
+                        <div>
+                            <input id="infoInput" th:field="*{name}" type="text" title="Restaurant Name" placeholder="Name" required="required" spellcheck="false" />
+                            <span class="inputName">Name</span>
+                            <span id="required">*</span>
+                            
+                        </div>
+                        <div>
+                            <textarea id="infoInput" th:field="*{address}" title="Address" placeholder="Address" required="required" spellcheck="false"></textarea>
+                            <span class="inputName address">Address</span>
+                            <span id="required">*</span>
+                            
+                        </div>
+                        <div>
+                            <input id="infoInput" th:field="*{email}" title="Email" type="email" placeholder="Email"/>
+                      		<span class="inputName">Email</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" th:field="*{phone_no}" title="Phone number" type="text" required="required" placeholder="Phone Number" spellcheck="false" />
+                            <span class="inputName">Phone Number</span>
+                            <span id="required">*</span>
+                            
+                        </div>
+                        
+                        <div>
+                        	<input id="infoInput" th:field="*{receiver}" title="Receiver" type="text" required="required" placeholder="Receiver" spellcheck="false" />
+                            <span class="inputName">Receiver Name</span>
+                            <span id="required">*</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div id="right">
+                        <div>
+                            <label id="staff_status_label">Status</label>
+                            <select class="status_dropdown" th:field="*{status}">
+                                <option value="1">Active</option>  
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <button type="reset" class="clear_all_field_btn">Clear All Field<i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="saveupadateDiv">
+                    <button type="button" class="cancelInfoEditBtn">Cancel</button>
+                    <button type="submit" class="saveInfoEidtBtn">Save</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    
+    <div th:class="${updateMessage_class}">
+		<div id="iconBox">
+			<lord-icon src="https://cdn.lordicon.com/yqzmiobz.json"
+				colors="primary:#00d736"
+				trigger="loop" style="width:50px;height:50px"> 
+			</lord-icon>
+		</div>
+		<div id="messageBox">
+			<span >SUCCESS!</span>
+			<span th:text="${updateMessage}"></span>
+		</div>
+	</div>
+
+
+    <script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/restaurant.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,468 @@
+
+
+/************************************************************************************/
+.search_upload_container{
+    color: #333f50;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.search_upload_container > .search_container{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 20px;
+    gap: 2px;
+}
+
+.search_upload_container > .search_container > input[type="search"] {
+    color: #333f50;
+    width: 200px;
+    height: 40px;
+    outline-style: none;
+    border: 2px solid #333f50;
+    border-radius: 3px 0 0 3px;
+    padding-left: 10px;
+}
+
+.search_upload_container > .search_container > button{
+    width: 70px;
+    height: 40px;
+    background-color: #333f50;
+    color: #fff;
+    outline-style: none;
+    border: none;
+    border-radius: 0 3px 3px 0;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/********************************************************/
+
+.addAvoidMeatBtn{
+    position: absolute;
+    top: 75px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 35px;
+    outline-style: none;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: #333f50;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+  /********************************************************************************************/
+
+  .total_div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 20px;
+}
+.total_div > label {
+    color: #333f50;
+    font-size: 15px;
+    font-weight: 550;
+    margin-right: 20px;
+}
+.total_div > label > span {
+    font-weight: 500;
+}
+
+/************** Table **********************************************************/
+
+
+.table_container {
+    /* border: 2px solid #bbbbbb; */
+    width: 97%;
+    border-radius: 5px;
+    padding: 5px 5px 10px 5px;
+    overflow-x: auto;
+    margin-top: 10px;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  }
+  
+  table {
+    table-layout: fixed;
+    max-width: fit-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  thead {
+    display: table; /* to take the same width as tr */
+    width: calc(100% - 0.7em); /* - 17px because of the scrollbar width */
+    border-bottom: 1px solid #cccccc;
+  }
+  
+  thead th{
+    background-color: #333f50;
+    color: #fff;
+  }
+  
+  tbody {
+    display: block; /* to enable vertical scrolling */
+    min-height: 450px;
+    max-height: 450px; /* e.g. */
+    overflow-y: scroll; /* keeps the scrollbar even if it doesn't need it; display purpose */
+  
+  }
+  /* tbody:hover {
+    overflow-y: auto;
+  } */
+  .table_container::-webkit-scrollbar{
+      height: 0.7em;
+  }
+  
+  tbody::-webkit-scrollbar {
+    width: 0.7em;
+  }
+  
+  .table_container::-webkit-scrollbar-track,
+  tbody::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+  }
+  
+  .table_container::-webkit-scrollbar-thumb,
+  tbody::-webkit-scrollbar-thumb {
+    background-color: #333f50;
+    border-radius: 15px;
+  }
+  
+  .table_container::-webkit-scrollbar-thumb:hover,
+  tbody::-webkit-scrollbar-thumb:hover {
+    background-color: #3d4a5e;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #7c8fa68f;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #efefef;
+  }
+  tr {
+    height: 50px;
+    display: table; /* display purpose; th's border */
+    width: 100%;
+    box-sizing: border-box; /* because of the border (Chrome needs this line, but not FF) */
+  }
+  tbody tr{
+    height: 90px;
+  }
+  th,
+  td {
+    padding: 5px;
+    word-break: break-all;
+    border-left: 1px solid #cccccc;
+  }
+  
+  thead th{
+  	font-size: var(--fontSize);
+  }
+  
+  tbody td{
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  
+  thead th:nth-child(1),
+  tbody td:nth-child(1) {
+    width: 5%;
+    border-left: none;
+  }
+  
+  thead th:nth-child(2),
+  tbody td:nth-child(2) {
+    width: 20%;
+  }
+  thead th:nth-child(3),
+  tbody td:nth-child(3) {
+    width: 15%
+  }
+  thead th:nth-child(4),
+  tbody td:nth-child(4) {
+    width: 15%;
+  }
+  thead th:nth-child(5),/*Phone Number*/
+  tbody td:nth-child(5) {
+    width: 15%;
+  }
+  thead th:nth-child(6),
+  tbody td:nth-child(6) {
+    width: 15%;
+  }
+  thead th:nth-child(7),
+  tbody td:nth-child(7) {
+    width: 5%;
+  }
+  thead th:nth-child(8),
+  tbody td:nth-child(8) {
+    width: 5%;
+  }
+
+  tbody td .statusRadioBtn {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: red;
+  }
+
+  tbody td .statusRadioBtn.active {
+    accent-color: green;
+  }
+
+
+  tbody td button{
+  	color: #fff;
+    width: 45px;
+    height: 45px;
+    outline-style: none;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: #333f50;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    
+  }
+  tbody td #restaurant_info_btn {
+    margin-bottom: 5px;
+  }
+
+  tbody td button:hover{
+    background-color: #2b3645;
+  }
+
+  tbody td button i {
+    font-size: 1.6em;
+    color: #fff;
+  }
+
+
+
+
+
+  /************** POPUP ******************* */
+
+  .info_popup_container {
+    z-index: 100;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background-color: #ececece4;
+      border-radius: 5px;
+  }
+
+  .info_popup_container.open{
+    animation: openPopupAnimation 0.4s forwards;
+    display: flex;
+  }
+
+  
+  @keyframes openPopupAnimation {
+    from{
+      top: 50%;
+      left: 50%;
+      bottom: 50%;
+      right: 50%;
+      opacity: 0;
+      
+    }
+    to{
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 1;
+      
+    }
+  }
+
+  .info_popup_container .closePopupBtn{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    outline-style: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333f50;
+    transition: background-color 0.2s ease-in-out;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.info_popup_container .closePopupBtn:hover{
+    background-color: #de1f1f;
+}
+.info_popup_container .closePopupBtn i{
+    color: #fff;
+    font-size: 1.5em;
+}
+/*-----------------------------------------*/
+ .info_popup_container .addNewAvoidMeatFormContainer{
+ position: relative;
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: center;
+ 	flex-direction: column;
+ 	gap: 20px;
+ 	width: 400px;
+ 	height: 300px;
+ 	background: #fff;
+ 	border-radius: 5px;
+ 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+ 	animation: openPopupAnimation1 0.5s forwards;
+ 	overflow: hidden;
+ }
+ 
+  @keyframes openPopupAnimation1 {
+    from{
+      	width: 0px;
+ 		height: 0px;
+ 		opacity: 0;
+    }
+    to{
+       	width: 400px;
+ 		height: 300px;
+        opacity: 1;
+      
+    }
+  }
+  
+  #add_edit_avoidMeatLabel{
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	right: 0;
+  	padding: 10px;
+  	font-size: 1.3em;
+  	font-weight: 600;
+  	text-align: center;
+  	color: #fff;
+  	background: #333f50;
+  }
+.duplicate_avoidMeat{
+	display: none;
+	position: absolute;
+	top: 50px;
+	padding: 10px ;
+	background: red;	
+	color: #fff;
+	border-radius: 5px;
+	left: 35px;
+	
+}
+.duplicate_avoidMeat.show{
+	display: block;
+	animation: duplicate_avoidMeatAnimation 1.3s infinite;
+}
+.duplicate_avoidMeat::before{
+	content: '';
+	min-width: 15px;
+	min-height: 15px;
+	background: red;
+	position: absolute;
+	left: 10px;
+	bottom: -7px;
+	transform: rotate(45deg);
+}
+
+@keyframes duplicate_avoidMeatAnimation{
+	0%,100%{
+		top: 50px;
+	}
+	50%{
+		top: 55px;
+	}
+	
+}
+
+
+#avoidMeatInput{
+	width: 80%;
+	min-height: 40px;
+	font-size: 18px;
+	color: #333f50;
+	outline: none;
+	border: 2px solid #333f50;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+
+#avoidMeatInput:focus{
+	background-color: rgb(232, 240, 254);
+}
+
+#avoidMeatStatusDropdownLabel{
+	color: #333f50;
+	font-size: 1.3em;
+	width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	
+}
+
+.avoidMeatStatusDropdown{
+	color: #fff;
+    width: 120px;
+    height: 40px;
+    font-size: 17px;
+    outline-style: none;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    background-color: #333f50;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+#avoidMeatSubmitBtn{
+	position: absolute;
+	bottom: 20px;
+	width: 85%;
+	min-height: 45px;
+	border-radius: 5px;
+	border: 2px solid #fff;
+	background: #333f50;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	cursor: pointer;
+	box-shadow: 0 0 3px rgba(0,0,0,0.4);
+}
+#avoidMeatSubmitBtn:disabled,
+#avoidMeatSubmitBtn:disabled:hover{
+	background-color: #a9a9a9;
+  	cursor: not-allowed;
+}
+#avoidMeatSubmitBtn:hover{
+	background: #2d3746;
+}
+  

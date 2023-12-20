@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSMIS - Avoid Meats</title>
+
+	<link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+    <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+    
+    
+    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+   
+    <link rel="stylesheet" th:href="@{/css/index.css}" >
+    <link rel="stylesheet" th:href="@{/css/avoidMeat.css}">
+    
+   
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Avoid Meat List</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+        
+        <form th:action="@{/DAT/avoid_meat_search}" method="GET" class="search_upload_container">
+            <div class="search_container">
+                <input type="search" name="searchValue" th:value="${searchValue}" placeholder="Search avoid meat ..."/>
+                <button type="submit">Search</button> 
+            </div>
+        </form>
+
+        <button class="addAvoidMeatBtn"><i class="fa-solid fa-plus"></i>Add New Avoid Meat</button>
+
+        <div class="total_div">
+            <label>Total : 
+                <span th:text="${avoidMeatLists.size()}"></span>
+            </label>
+        </div>
+        <!-- ******************* No data ***************  -->
+        
+        <label th:class="${avoidMeatLists.isEmpty() ? 'noData open' : 'noData'}">No Data Found!</label>
+
+        <!-- ****************** Table ***************** -->
+        
+        
+        <input class="avoidMeatListHidden" type="hidden" th:value="${avoidMeatsNames}" />
+
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" style="--fontSize: 15px;">No</th>
+                        <th scope="col" style="--fontSize: 15px;">Name</th>
+                        <th scope="col" style="--fontSize: 15px;">Created At</th>
+                        <th scope="col" style="--fontSize: 15px;">Created By</th>
+                        <th scope="col" style="--fontSize: 15px;">Updated At</th>
+                        <th scope="col" style="--fontSize: 15px;">Updated By</th>
+                        <th scope="col" style="--fontSize: 15px;">Status</th>
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="avoidMeat, av_status : ${avoidMeatLists}">
+                        <td th:text="${av_status.count}"></td>
+                        <td th:text="${avoidMeat.name}"></td>
+                        <td th:text="${avoidMeat.createdAt}"></td>
+                        <td th:text="${avoidMeat.createdBy}"></td>
+                        <td th:text="${avoidMeat.updatedAt==null ? '- - - -' : avoidMeat.updatedAt}"></td>
+                        <td th:text="${avoidMeat.updatedBy==null ? '- - - -' : avoidMeat.updatedBy}"></td>
+                        <td >
+                        	<input 
+                        		th:class="'statusRadioBtn ' + ${avoidMeat.status==1 ? 'active' : ''}" 
+                        		type="radio" checked="checked"
+                        	/>
+                        </td>
+                        <td>
+                        	<input type="hidden" th:value="${avoidMeat.id}"/>
+                        	<input type="hidden" th:value="${avoidMeat.name}"/>
+                        	<input type="hidden" th:value="${avoidMeat.status}"/>
+                        	
+                            <button id="avoidMeat_edit_btn">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- ****************** Popup Container ************************ -->
+		
+        <div class="info_popup_container">
+
+            <button class="closePopupBtn"><i class="fa-solid fa-xmark"></i></button>
+            
+            <form th:action="@{/DAT/avoid_meat_add_update_meat}" method="post" class="addNewAvoidMeatFormContainer">
+            	<label id="add_edit_avoidMeatLabel">Add New Avoid Meat</label>
+            	
+            	<span class="duplicate_avoidMeat">This meat already exists!</span>
+            	
+            	<input id="avoidMeatIdHidden" name="avoidMeatId" type="hidden"  />
+            	
+            	<input id="avoidMeatInput" type="text" name="meatName" placeholder="Meat Name" title="Name" required="required" spellcheck="false"/>
+            	
+            	<label id="avoidMeatStatusDropdownLabel">
+            		Status : 
+            		<select name="status" class="avoidMeatStatusDropdown">
+            			<option value="1">Active</option>
+            			<option value="0">Inactive</option>
+            		</select>
+            	</label>
+            	
+            	<button id="avoidMeatSubmitBtn" type="submit">Save</button>
+            </form>
+            
+            
+        </div>
+
+    </div>
+    
+    <div th:class="${updateMessage_class}">
+		<div id="iconBox">
+			<lord-icon src="https://cdn.lordicon.com/yqzmiobz.json"
+				colors="primary:#00d736"
+				trigger="loop" style="width:50px;height:50px"> 
+			</lord-icon>
+		</div>
+		<div id="messageBox">
+			<span >SUCCESS!</span>
+			<span th:text="${updateMessage}"></span>
+		</div>
+	</div>
+
+
+    <script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/avoidMeat.js}"></script>
+
+</body>
+
+</html>

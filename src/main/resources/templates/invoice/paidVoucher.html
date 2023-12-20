@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+
+	<link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/paidVoucher.css}">
+
+    <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Invoice - Paid Voucher</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+        
+        <form th:action="@{/DAT/invoice_paid_back_to_invoice_page}">
+    		<button type="submit" class="close"><i class="fa-solid fa-xmark"></i></button>
+    	</form>
+
+        <div class="paymentVoucherMain_container">
+
+            <div>
+                <img id="companyLogo" alt="company_logo" th:src="@{/images/DAT Logo.png}" />
+                <label id="paidVoucherMainLabel">
+                	Paid Voucher List From 
+                	<span style="color: #336699" id="startDateLabel" th:text="${startDate.equals('') ? 'YYYY-MM-DD' : startDate}"></span> To 
+                	<span style="color: #336699" id="endDateLabel" th:text="${endDate.equals('') ? 'YYYY-MM-DD' : endDate}"></span>
+                </label>
+            </div>
+
+            <input id="startDate_hidden" type="hidden" />
+            <input id="endDate_hidden" type="hidden" />
+
+            <form th:action="@{/DAT/invoice_paid_voucher_date_confirm}" method="POST" id="dateConfirm_container">
+                <label>Start Date : </label>
+                <input id="confirmDatePicker" name="startDate" th:value="${startDate}" class="startDate" type="date" />
+                <label>End Date : </label>
+                <input id="confirmDatePicker" name="endDate" th:value="${endDate}" class="endDate" type="date" />
+                <button type="submit" id="confirmDateBtn" disabled>Confirm</button>
+            </form>
+
+            <div class="table_container">
+            
+            	<h1 id="nodatafound" th:text="${!paidVouchers.isEmpty() ? '' : 'No Data Found!'}"></h1>
+            	
+                <table class="main_table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sr.No</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Restaurant Service</th>
+                            <th scope="col">Cashier</th>
+                            <th scope="col">Received By</th>
+                            <th scope="col">Approver Manager</th>
+                            <th scope="col">No. of<br>Pax</th>
+                            <th scope="col" class="cost">Staff<br>Cost</th>
+                            <th scope="col" class="cost">Company<br>Cost</th>
+                            <th scope="col">
+                            	Total<br>Cost
+                            	<button class="costShowBtn" title="Expand"><i class="fa-solid fa-caret-left"></i></button>
+                            </th>
+                            <th scope="col" class="amount">Amount<br>(Staff)</th>
+                            <th scope="col" class="amount">Amount<br>(Company)</th>
+                            <th scope="col">
+                            	Total<br>Amount
+                            	<button class="amountShowBtn" title="Expand"><i class="fa-solid fa-caret-left"></i></button>
+                            </th>
+                            <th scope="col">Payment<br>Date</th>
+                            <th scope="col">Payment<br>Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="voucher , c : ${paidVouchers}">
+                            <td th:text="${c.count}"></td>
+                            <td th:text="${voucher.description}">CS001-20230206 : 30012023 ~03022023</td>
+                            <td th:text="${voucher.cateringService}">Restaurant Name </td>
+                            <td th:text="${voucher.cashier}">Nay Zaw Pyae</td>
+                            <td th:text="${voucher.receiver}">Zarni Maung</td>
+                            <td th:text="${voucher.approver}">Yin Yin Nwe</td>
+                            <td th:text="${voucher.actualCount}">18</td>
+                            <td class="cost" th:text="${voucher.staffCost}">1500</td>
+                            <td class="cost" th:text="${voucher.companyCost}">1000</td>
+                            <td th:text="${voucher.totalCost}">2500</td>
+                            <td class="amount" th:text="${voucher.staffAmount}">231400</td>
+                            <td class="amount" th:text="${voucher.companyAmount}">231400</td>
+                            <td th:text="${voucher.totalAmount}">0023140000</td>
+                            <td th:text="${voucher.paymentDate}">2023-03-06</td>
+                            <td th:text="${voucher.paymentMethod}">Cash</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="totalAmount_container">
+                <Label id="totalAmountLabel">Total Cost for Lunch Catering Service : <span id="totalAmount" th:text="${totalAmount}"></span> MMK</Label>
+            </div>
+
+
+            <div id="checkout_container">
+                <button type="submit" class="checkoutBtn" th:disabled="${paidVouchers.isEmpty()}">Export PDF File<i class="fa-solid fa-file-export"></i></button>
+            </div>
+
+        </div>
+    </div>
+
+
+<!----------------------- Confirmation container----------------------------------  -->
+	<div class="confirmationContainer">
+		<form class="conf_form_container" 
+				th:action="@{/DAT/invoice_paid_voucherexport}" method="POST"  
+				target="_blank"
+		>
+			<label id="conf_header">Confirmation</label>
+			<span id="conf_message">
+				Are you sure want to export PDF file?
+			</span>
+			
+			<div id="conf_btn_container">
+				<button class="checkoutCancleBtn" type="button">No</button>
+				<button class="checkoutConfirmBtn" type="submit">Yes</button>
+			</div>
+		</form>
+	</div>
+
+
+
+    <script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/padiVoucher.js}"></script>
+    
+</body>
+
+</html>

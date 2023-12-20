@@ -1,0 +1,363 @@
+
+
+.lineChart_container {
+    position: relative;
+    width: 100%;
+    height: 300px; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    margin-right: 20px;
+}
+
+.lineChart_container .label_container{
+    
+    overflow: hidden;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    border-radius: 5px 5px 0 0;
+}
+
+.lineChart_container .label_container label{
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    height: 100%;
+    line-height: 2em;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-bottom-right-radius:30px;
+    background-color: #333f50;
+    
+}
+
+
+.lineChart_container .week {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.week .week_graph_label_container{
+    min-width: 150px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.week .week_graph_label_container span{
+    color: #333f50;
+    font-weight: bold;
+    text-align: center;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 13px;
+    margin-right: 25px;
+    min-height: 40px;
+}
+
+.lineChart_container .week .week_graph_container{
+    width: 100%;
+    height: 90%;
+    border: 1px solid #333f50;
+    border-width: 0 0 2px 2px;
+    margin-right: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    /* flex-direction: column; */
+    gap: 8px;
+    margin-left: 30px;
+}
+
+.lineChart_container .week .week_graph_container > div {
+	position: relative;
+	width: 10%;
+	min-width: 30px;
+	height: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+	gap: 0px;
+}
+.lineChart_container .week .week_graph_container > div:before{
+	content: '';
+	position: absolute;
+	width: 2px;
+	height: 5px;
+	background: #333f50;
+	bottom: -9px;
+	left: 53%;
+	transform : translate(-50%,-50%);
+}
+
+.lineChart_container .week .week_graph_container div:nth-child(1){
+	margin-left: 2px;
+}
+
+.lineChart_container .week .week_graph_container div > div:nth-child(1) {
+	position: relative;
+   	height: var(--value);
+    width: 50%;
+    background: #576c88;
+    /* background: #1d6ece;
+    background: linear-gradient(90deg, rgba(29,110,206,1) 18%, rgba(29,198,199,1) 48%, rgba(0,212,255,1) 100%); */
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    animation: graphAnimation 0.8s forwards;
+}
+.lineChart_container .week .week_graph_container div > div:nth-child(2) {
+	position: relative;
+	height: var(--value);
+    width: 50%;
+    background: #333f50;
+    /* background: #d033bf;
+    background: linear-gradient(90deg, rgba(208,51,191,1) 18%, rgba(248,149,255,1) 48%, rgb(255, 144, 240) 100%); */
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    animation: graphAnimation 0.8s forwards;
+}
+
+.lineChart_container .week .week_graph_container div > div > span{
+	position: absolute;
+	top: -15px;
+	left: 50%;
+	transform : translate(-50%,-50%);
+	font-size: 14px;
+	color: #333f50;
+	font-weight: 600;
+}
+
+.lineChart_container .week .week_graph_container div > span:nth-child(3){
+	position: absolute;
+	bottom: -32px;
+	left: 53%;
+	transform : translate(-50%,-50%);
+	width: 12px;
+	height: 12px;
+	border-radius:50%;
+	background: #333f50;
+	border: 2px solid #fff;
+	box-shadow: 0 0 3px 1px rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+.lineChart_container .week .week_graph_container div > span:nth-child(3):hover{
+	transition: 0.5s;
+	background: green;
+}
+
+.lineChart_container .week .week_graph_container div > .departmentName{
+	position: absolute;
+	text-align: center;
+	color: #333f50;
+	display:none;
+	min-width: 150px;
+	bottom: 0;
+	left: 53%;
+	transform : translate(-50%,-50%);
+	padding: 10px;
+	background: #fff;
+	border-radius: 5px;
+	border: 2px solid #333f50;
+	border-width: 0 0 2px 0;
+	box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+	z-index: 25;
+	
+}
+.lineChart_container .week .week_graph_container div > .departmentName:before{
+	content: '';
+	position: absolute;
+	left: 50%;
+	transform : translate(-50%,-50%) rotate(45deg);
+	bottom: -12px;
+	min-width: 10px;
+	min-height: 10px;
+	background: #fff;
+	border: 2px solid #333f50;
+	border-width: 0 2px 2px 0;
+	z-index: 25;
+}
+
+.lineChart_container .week .week_graph_container div > .departmentName.show{
+	display: block;
+}
+
+
+@keyframes graphAnimation {
+    from{
+        height: 0%;
+    }
+    to{
+        height: var(--value);
+    }
+}
+
+#graphMaleFemaleExplain{
+	position: absolute;
+	top: 5px;
+	right: 220px;
+	width: 300px;
+	min-height: 45px;
+	max-height: 45px;
+	border-radius: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+#graphMaleFemaleExplain:before{
+	display: none;
+}
+
+#graphMaleFemaleExplain #explain{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: row;
+	gap: 5px;
+	color: #333f50;
+}
+
+#graphMaleFemaleExplain > #explain >label{
+	min-width: 20px;
+	max-width: 20px !important;
+	min-height: 20px;
+	max-height: 20px;
+	background: #576c88;
+}
+
+#graphMaleFemaleExplain > #explain:nth-child(2) >label{
+	
+	background: #333f50;
+}
+
+
+.lineChart_explain_container{
+    min-width: 200px;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #fff;
+    /* border: 1px solid #dcdcdc; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+
+.lineChart_explain_container > div {
+    width: 100%;
+    min-height: 50px;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.lineChart_explain_container > div > label{
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333f50;
+    width: 100%;
+    text-align: center;
+}
+
+.lineChart_explain_container > div > span:nth-child(1){
+	display: none;
+	position: absolute;
+	right: 180px;
+	color: #333f50;
+	padding: 10px 15px;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+.lineChart_explain_container > div > span:nth-child(1)::before{
+	content: '';
+	position: absolute;
+	right: -9px;
+	top: 12px;
+	width: 15px;
+	height: 15px;
+	background: #fff;
+	border-color: #e4e4e4;
+	border-style: solid;
+	border-width: 2px 2px 0 0;
+	transform: rotate(45deg);
+	
+}
+.lineChart_explain_container > div:hover > span:nth-child(1){
+	display: block;
+}
+
+.lineChart_explain_container > div > span:nth-child(2){
+    width: 30px;
+    height: 30px;
+    background-color: var(--color);
+    border-radius: 3px;
+    border: 3px solid #fff;
+    margin-left: 50px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    animation: explainationAnimation 0.5s forwards;
+    cursor: pointer;
+}
+
+@keyframes explainationAnimation {
+    from{
+        width: 0;
+        height: 0;
+    }
+    to{
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.lineChart_explain_container > div > span:nth-child(3) {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333f50;
+    margin-left: 30px;
+    animation: explainationAnimation1 1s forwards;
+}
+
+@keyframes explainationAnimation1 {
+    from{
+        font-size: 0;
+    }
+    to{
+        font-size: 20px;
+    }
+}
+
+
+.lineChart_container .week_graph_percent_label_container{
+    position: absolute;
+    right: 270px;
+    bottom: 0;
+    left: 155px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.lineChart_container .week_graph_percent_label_container span{
+    font-size: 14px;
+    color: #333f50;
+}

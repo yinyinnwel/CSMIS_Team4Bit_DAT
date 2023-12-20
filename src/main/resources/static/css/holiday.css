@@ -1,0 +1,459 @@
+.center_container .refreshBtn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline-style: none;
+    border-radius: 5px;
+    gap: 5px;
+    font-size: 1em;
+    border: 2px solid #fff;
+    background-color: #333f50;
+    color: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.center_container .refreshBtn:hover{
+    background-color: #2a3341;
+}
+
+.center_container .refreshBtn i{
+    font-size: 1.4em;
+}
+
+/*----------------- Help ---------------------------*/
+
+.help{
+	position: absolute;
+	top:5px;
+	left:15px;
+	width: 500px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.help #help_icon{
+	z-index: 20;
+	width: 25px;
+	height:25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-style: outset;
+	border-radius: 50%;
+	color: #fff;
+	font-weight: 600;
+	background: #333f50;
+	cursor: pointer;
+	box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+.help #help_icon:hover{
+	background: green;
+	transition: 0.3s;
+}
+
+.help #help_title{
+	z-index: 15px;
+	position: absolute;
+	left: 15px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	font-size: 14px;
+	font-weight: 600;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #333f50;
+	width: 250px;
+	min-height: 20px;
+	max-height: 20px;
+	background: #f2f2f2;
+	border-style: outset;
+	border-radius: 0 10px 10px 0;
+	overflow: hidden;
+	
+}
+.help #help_icon:hover + #help_title{
+	display: flex;
+	animation: helpAnimation 0.5s forwards;
+}
+@keyframes helpAnimation{
+	from{
+		width: 0px;
+	}to{
+		width: 250px;
+	}
+}
+
+/************************************************************************************/
+.holidayHeaderLabel{
+	text-decoration: underline; 
+	position: absolute;
+	top: 25px;
+	left: 50%;
+	color: #333f50;
+	font-size: 1.8em;
+	font-weight: 600;
+	transform: translate(-50%, -50%);
+}
+
+
+.inputFile_container {
+    position: absolute;
+    top: 40px;
+    left: 15px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3px;
+    padding-right: 10px;
+ 
+    
+  }
+  
+  .inputFile_container form{
+  	width: 100%;
+  	display: flex;
+  	align-items: center;
+  	justify-content: flex-start;
+  	gap: 5px;
+  }
+  
+  .inputFile_container #inputFile {
+    padding: 3px;
+    background-color: #cad0d8;
+    border-radius: 3px;
+    outline-style: none;
+    border: none;
+    width: 320px;
+  }
+  .inputFile_container #inputFile::-webkit-file-upload-button {
+    position: absolute;
+    visibility: hidden;
+  }
+  .inputFile_container #inputFile::before {
+    content: "Upload File";
+    color: #fff;
+    display: inline-block;
+    background: #333f50;
+  
+    border-radius: 3px;
+    padding: 8px 10px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    margin-right: 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+  .inputFile_container #inputFile:hover::before {
+    background-color: #3f4d60;
+  }
+  .inputFile_container #inputFile:active {
+    outline: 0;
+  }
+  
+  .inputFile_container form #saveFileBtn {
+    outline-style: none;
+    width: 80px;
+    height: 39px;
+    font-weight: 550;
+    background-color: #333f50;
+    border-radius: 3px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .inputFile_container #saveFileBtn:disabled,
+  .inputFile_container #saveFileBtn:disabled:hover{
+    background-color: #cacaca;
+    cursor: not-allowed;
+  }
+  
+  .inputFile_container #saveFileBtn:hover {
+    background-color: #3f4d60;
+  }
+  
+
+
+  /********************************************************************************************/
+
+  .total_div{
+    position: absolute;
+    top: 65px;
+    right: 10px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+.total_div > label {
+    color: #333f50;
+    font-size: 15px;
+    font-weight: 550;
+    margin-right: 20px;
+}
+.total_div > label > span {
+    font-weight: 500;
+}
+
+/************** Table **********************************************************/
+
+
+.table_container {
+    /* border: 2px solid #bbbbbb; */
+    width: 97%;
+    border-radius: 5px;
+    padding: 5px 5px 10px 5px;
+    overflow-x: auto;
+    margin-top: 90px;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  }
+  
+  table {
+    table-layout: fixed;
+    max-width: fit-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  thead {
+    display: table; /* to take the same width as tr */
+    width: calc(100% - 0.7em); /* - 17px because of the scrollbar width */
+    border-bottom: 1px solid #cccccc;
+  }
+  
+  thead th{
+    background-color: #333f50;
+    color: #fff;
+  }
+  
+  tbody {
+    display: block; /* to enable vertical scrolling */
+    min-height: 500px;
+    max-height: 500px; /* e.g. */
+    overflow-y: scroll; /* keeps the scrollbar even if it doesn't need it; display purpose */
+  
+  }
+  /* tbody:hover {
+    overflow-y: auto;
+  } */
+  .table_container::-webkit-scrollbar{
+      height: 0.7em;
+  }
+  
+  tbody::-webkit-scrollbar {
+    width: 0.7em;
+  }
+  
+  .table_container::-webkit-scrollbar-track,
+  tbody::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+  }
+  
+  .table_container::-webkit-scrollbar-thumb,
+  tbody::-webkit-scrollbar-thumb {
+    background-color: #333f50;
+    border-radius: 15px;
+  }
+  
+  .table_container::-webkit-scrollbar-thumb:hover,
+  tbody::-webkit-scrollbar-thumb:hover {
+    background-color: #3d4a5e;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #7c8fa68f;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #efefef;
+  }
+  tr {
+    height: 50px;
+    display: table; /* display purpose; th's border */
+    width: 100%;
+    box-sizing: border-box; /* because of the border (Chrome needs this line, but not FF) */
+  }
+  th,
+  td {
+    padding: 5px;
+    word-break: break-all;
+    border-left: 1px solid #cccccc;
+  }
+  
+  tbody td{
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  thead th:nth-child(1),
+  tbody td:nth-child(1) {
+    width: 10%;
+    border-left: none;
+  }
+  
+  thead th:nth-child(2),
+  tbody td:nth-child(2) {
+    width: 40%;
+  }
+  thead th:nth-child(3),
+  tbody td:nth-child(3) {
+    width: 50%;
+    
+  }
+  tbody tr:nth-child(odd) td:nth-child(3){
+  	color: rgb(0, 0, 0);
+  	text-shadow: 1px 0px #dfdfdf;
+  	font-weight: 600;
+  }
+  tbody tr:nth-child(even) td:nth-child(3){
+  	color: rgb(0, 0, 0);
+  	text-shadow: 1px 0px #e4e4e4;
+  	font-weight: 600;
+  }
+
+  tbody td button{
+    width: 45px;
+    height: 35px;
+    outline-style: none;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: #333f50;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+
+  tbody td button:hover{
+    background-color: #2b3645;
+  }
+
+  tbody td button i {
+    font-size: 1.6em;
+    color: #fff;
+  }
+
+/*============== Help popup Container =============*/
+
+.helpPopupContainer{
+	z-index: 100;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background-color: #ececece4;
+      border-radius: 5px;
+	
+}
+
+ .helpPopupContainer.open{
+    animation: openPopupAnimation 0.4s forwards;
+    display: flex;
+  }
+
+  
+  @keyframes openPopupAnimation {
+    from{
+      top: 50%;
+      left: 50%;
+      bottom: 50%;
+      right: 50%;
+      opacity: 0;
+      
+    }
+    to{
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 1;
+      
+    }
+  }
+
+  .helpPopupContainer .closePopupBtn{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    outline-style: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333f50;
+    transition: background-color 0.2s ease-in-out;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.helpPopupContainer .closePopupBtn:hover{
+    background-color: #de1f1f;
+}
+.helpPopupContainer .closePopupBtn i{
+    color: #fff;
+    font-size: 1.5em;
+}
+
+
+.helpCenterContainer{
+	position: absolute;
+	top: 10px;
+	bottom: 10px;
+	width: 60%;
+	min-width: 500px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	border-radius: 15px;
+	background: #ffff;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+	
+}
+.helpCenterContainer label{
+	position: absolute;
+	top: 20px;
+	font-size: 2em;
+	font-weight: 600;
+	color: #333f50;
+	text-decoration: underline;
+}
+
+.helpCenterContainer img{
+	width: 75%;
+	height: auto;
+	max-height: 70%;
+	border-radius: 15px;
+	border: 3px outset #fff;
+	box-shadow : 0 0 5px 0px rgba(0,0,0,0.2);
+}
+.helpCenterContainer span:last-child {
+	position: absolute;
+	bottom: 30px;
+	left: 13%;
+	width: 70%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #333f50;
+	font-weight: 600;
+}
+  

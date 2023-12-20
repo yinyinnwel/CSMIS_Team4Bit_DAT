@@ -1,0 +1,122 @@
+
+
+    .center_container #penLogo{
+        position: absolute;
+        right: 250px;
+        bottom: 150px;
+        font-size: 2.5cm;
+        color: #333f50;
+        transform: rotateY(180deg);
+        animation: penAnimation 0.7s forwards;
+    }
+
+    @keyframes penAnimation {
+        from{
+            bottom: 0px;
+        }
+        to{
+            bottom: 150px;
+        }
+    }
+  
+    .center_container #invoiceAbsoluteLogo{
+        position: absolute;
+        color: #717f94;
+        right: 60px;
+        bottom: 25px;
+        font-size: 9cm;
+        transform: rotateX(-45deg) rotateY(25deg) rotateZ(30deg);
+        animation: updownLogoAnimation 1s forwards;
+    }
+
+    @keyframes updownLogoAnimation {
+        from{
+            bottom: -80px;
+            transform: rotateX(-80deg) rotateY(0deg) rotateZ(35deg);
+        }
+        to{
+            bottom: 25px;
+            transform: rotateX(-45deg) rotateY(25deg) rotateZ(30deg);
+        }
+    }
+
+    .center_container #invoiceAbsoluteLogo_shadow{
+        position: absolute;
+        color: #969696;
+        right: 35px;
+        bottom: -80px;
+        font-size: 9cm;
+        transform: rotateX(-80deg) rotateY(0deg) rotateZ(35deg);
+        animation: shadowAnimation 1s forwards;
+    }
+
+    @keyframes shadowAnimation {
+        from{
+            right: 70px;
+            bottom: -40px;
+            font-size: 6cm;
+        }
+        to{
+            right: 35px;
+            bottom: -80px;
+            font-size: 9cm;
+        }
+    }
+  
+  .invoice_container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 50px;
+    padding-left: 50px;
+    gap: 20px;
+
+  }
+  
+  .invoice_container #payment_container{
+    text-decoration: none;
+    width: 350px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    border-radius: 10px;
+    background-color: #333f50;
+    cursor: pointer;
+  }
+
+  .invoice_container #payment_container:hover{
+    background-color: #2b3542;
+  }
+
+  .invoice_container #payment_container i {
+    font-size: 6em;
+    color: #7d8590;
+  }
+  .invoice_container #payment_container label{
+    text-align: center;
+    font-size: 2em;
+    line-height: 1.5em;
+    max-width: 150px;
+    color: #fff;
+  }
+  
+  /*   
+    @media screen and (max-width: 768px) {
+      .drawer-content {
+        width: 100%;
+        right: -100%;
+        transform: translateX(100%);
+      }
+      
+      .drawer-open .drawer-content {
+        transform: translateX(0);
+      }
+    } */
+    

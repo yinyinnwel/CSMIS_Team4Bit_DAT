@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.7.14/build/player/lottie.min.js"></script>
+
+	<link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+	
+    <link rel="stylesheet" th:href="@{/css/404.css}">
+</head>
+<body>
+
+    <div class="fOf_container">
+
+        <label id="fOf_message">
+            <span> Oops! </span>
+            <br>
+            The page you were looking for could not be found.
+            <br>
+            We're sorry about that. Maybe you mistyped the URL, or the page has been moved or deleted.
+            <br>
+            Please check the URL and try again, or return to the homepage to start over.
+        </label>
+
+        <div id="animation"></div>
+    </div>
+    
+</body>
+
+<script th:src="@{/js/404.js}"></script>
+</html>

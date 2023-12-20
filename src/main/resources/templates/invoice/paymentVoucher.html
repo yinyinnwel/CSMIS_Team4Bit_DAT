@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    
+    <link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/paymentVoucher.css}">
+
+    <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Invoice - Payment Voucher</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+        <form th:action="@{/DAT/invoice_back_to_invoice_page}">
+    		<button type="submit" class="close"><i class="fa-solid fa-xmark"></i></button>
+    	</form>
+
+        <div class="paymentVoucherMain_container">
+
+            <div>
+                <img id="companyLogo" alt="company_logo" th:src="@{/images/DAT Logo.png}" />
+                <label id="paymentVoucherMainLabel">Payment Voucher</label>
+            </div>
+
+            
+
+            <form th:action="@{/DAT/invoice_payment_voucher_date_confirm}" method="POST" id="dateConfirm_container">
+                <label>Start Date : </label>
+                <input id="confirmDatePicker" name="startDate" th:value="${startDate}" class="startDate" type="date" />
+                <label>End Date : </label>
+                <input id="confirmDatePicker" name="endDate" th:value="${endDate}" class="endDate" type="date" />
+                <button id="confirmDateBtn" disabled>Confirm</button>
+                
+                <span th:class="'transactionInclude ' + ${dateRangeStatus ? 'show' : ''}">
+                	<span id="pointer"></span>
+                	Some transactions are included in some vouchers!
+                </span>
+            </form>
+
+            <div id="voucherHeader_container">
+                <div>
+                    <label id="voucherNoLabel">
+                        Voucher No : 
+                        <span id="voucherNo" th:text="${voucherCode.equals('') ? '- - -' : voucherCode}">CS0001-yyyymmdd</span>
+                    </label>
+                    <label id="paymentDateLabel">
+                        Payment Date : 
+                        <!-- <span class="paymentDateLabel">0000-00-00</span> -->
+                        <input id="confirmDatePicker" class="paymentDatePicker" type="date" required="required" />
+                    </label>
+                </div>
+                <div>
+                    
+                    <label id="invoiceForLable">
+                        Invoice for : 
+                        <span>
+                            <span id="startDateLabel" th:text="${startDate.equals('') ? 'YYYY-MM-DD' : startDate}"></span> ~ 
+                            <span id="endDateLabel" th:text="${endDate.equals('') ? 'YYYY-MM-DD' : endDate}"></span>
+                        </span>
+                    </label>
+                    <label>
+                    	Catering Service :
+                    	<select class="serviceOption" >
+                    		<option 
+                    			th:id="${restaurant.receiver}"
+                    			th:each="restaurant : ${restaurants}" 
+                    			th:text="${restaurant.name}"
+                    			th:selected="${restaurant.status==1}"
+                    			th:value="${restaurant.id}"
+                    			th:style="${restaurant.status==1 ? 'color: green;' : 'color:red;'}"
+                    		></option>
+                    	</select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="table_container">
+            	<h1 id="nodatefound" th:text="${transactions.size()>0 ? '' : 'No Data Found!'}"></h1>
+            
+                <table class="main_table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sr.No</th>
+                            <th scope="col">Particulars Description</th>
+                            <th scope="col">Registered Count</th>
+                            <th scope="col">Actual Count</th>
+                            <th scope="col">Difference</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="transaction, c : ${transactions}">
+                            <td th:text="${c.count}"></td>
+                            <td th:text="${transaction.date}"></td>
+                            <td th:text="${transaction.registeredCount}"></td>
+                            <td th:text="${transaction.actualCount}"></td>
+                            <td th:text="${transaction.difference}"></td>
+                            <td th:text="${transaction.price}"></td>
+                            <td th:text="${transaction.amount}"></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="totalAmount_container">
+                <label id="totalAmountLabel">Total Amount : <span id="totalAmountSpan" th:text="${totalAmount}">0.0</span> MMK</label>
+                
+                <label id="statusLabel">
+                	Status :
+                	<select class="voucherStatusSelection">
+                		<option value="1">Paid</option>
+                		<option value="0">Unpaid</option>
+                	</select>
+                </label>
+            </div>
+
+            <div id="bottom">
+                <div>
+                    <label id="cashierLabel">Cashier</label>
+                    <input class="cashier_approver_input" type="text" spellcheck="false" placeholder="Name" readonly="readonly"/>
+                    <span id="required" th:text="${cashierStatus ? '* Please fill this field!' : ''}"></span>
+                    <div class="optionBox">
+                    	<div th:each="user : ${approver_Cashiers}">
+                    		<span th:text="${user}"></span>
+                    	</div>
+                    </div>
+                    
+                </div>
+                <div>
+                    <label id="receiverLabel">Receiver</label>
+                    <input id="receiverInput" type="text" spellcheck="false" placeholder="Name" readonly="readonly"/>
+                </div>
+                <div>
+                    <label id="approverLabel">Approver</label>
+                    <input class="cashier_approver_input1" type="text" spellcheck="false" placeholder="Name" readonly="readonly"/>
+                    <span id="required" th:text="${approverStatus ? '* Please fill this field!' : ''}"></span>
+                    <div class="optionBox1">
+                    	<div th:each="user : ${approver_Cashiers}">
+                    		<span th:text="${user}"></span>
+                    	</div>
+                    </div>
+                    
+                </div>
+                <div>
+                    <label id="paymentMethodLabel">Payment Method</label>
+                    <select id="paymentMethodDropdown">
+                        <option value="cash">Cash</option>
+                        <option value="bank">Bank</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="checkout_container" >
+                <button type="button" class="checkoutBtn" th:disabled="${transactions.isEmpty()}">Create Invoice<i class="fa-solid fa-check"></i></button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+<!----------------------- Confirmation container----------------------------------  -->
+	<div class="confirmationContainer">
+		<form class="conf_form_container" 
+				th:action="@{/DAT/invoice_create_payment_voucher}" method="POST" 
+				target="_blank"
+		>
+		<!-- ============= Data transfer input =========================== -->     	
+            <input id="restaurantId" type="hidden" name="restaurantId"/>
+            <input id="paymentDate" type="hidden" name="paymentDate"/>
+            <input id="cashier" type="hidden" name="cashier"/>
+            <input id="receiver" type="hidden" name="receiverInput"/>
+            <input id="approver" type="hidden" name="approver"/>
+            <input id="paymentMethod" type="hidden" name="paymentMethod"/>
+            <input id="status" type="hidden" name="status"/>
+		<!-- ============================================================= -->
+			<label id="conf_header">Confirmation</label>
+			<span id="conf_message">
+				Are you sure want to create this payment voucher?
+			</span>
+			
+			<div id="conf_btn_container">
+				<button class="checkoutCancleBtn" type="button">No</button>
+				<button class="checkoutConfirmBtn" type="submit">Yes</button>
+			</div>
+		</form>
+	</div>
+
+
+    <script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/paymentVoucher.js}"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSMIS - Admin</title>
+
+    <script src="https://kit.fontawesome.com/87c5ba1f8d.js" crossorigin="anonymous"></script>
+    
+   	<link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+   
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    
+   
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Admin List</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+
+    <div class="center_container">
+        
+        <!-- <div class="search_upload_container">
+            <div class="search_container">
+                <input type="search" placeholder="Search here..."/>
+                <button>Search</button>
+
+                <span>Filter By : </span>
+                <select class="filter_dropdown">
+                    <option value="staffId">Staff Id</option>
+                    <option value="username">Username</option>
+                </select>
+            </div>
+            
+        </div> -->
+
+        <div class="total_div">
+            <label>Total : 
+                <span th:text="${staffs.size()}"></span>
+            </label>
+        </div>
+
+        <!-- ****************** Table ***************** -->
+
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Staff ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Info</th>
+                        <!-- <th></th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tempStaff, staffStatus : ${staffs}">
+                        <td th:text="${staffStatus.count}"></td>
+                        <td th:text="${tempStaff.staffId}"></td>
+                        <td th:text="${tempStaff.name}"></td>
+                        <td th:text="${tempStaff.department}"></td>
+                        <td th:text="${tempStaff.team}"></td>
+                        <td th:text="${(tempStaff.status == 1) ? 'Active' : 'Inactive'}"></td>
+                        <td th:id="${staffs.indexOf(tempStaff)}">
+                        
+                        	<input type="hidden" id="role" th:value="${tempStaff.role}">
+                            <input type="hidden" id="division" th:value="${tempStaff.division==null || tempStaff.division=='' ? '-----' : tempStaff.division}">
+                            <input type="hidden" id="staffId" th:value="${tempStaff.staffId}">
+                            <input type="hidden" id="name" th:value="${tempStaff.name}">
+                            <input type="hidden" id="doofLog" th:value="${tempStaff.doorLogNo==null||tempStaff.doorLogNo=='' ? '-----' : tempStaff.doorLogNo}">
+                            <input type="hidden" id="department" th:value="${tempStaff.department==null||tempStaff.department=='' ? '-----' : tempStaff.department}">
+                            <input type="hidden" id="team" th:value="${tempStaff.team==null||tempStaff.team=='' ? '-----' : tempStaff.team}">
+                            <input type="hidden" id="email" th:value="${(tempStaff.email==null||tempStaff.email=='') ? '-----' : tempStaff.email}">
+                            <input type="hidden" id="status" th:value="${(tempStaff.status == 1) ? 'Active' : 'Inactive'}">
+                            <input type="hidden" id="createdAt" th:value="${tempStaff.createdAt==null ? '-----' : tempStaff.createdAt}">
+                            <input type="hidden" id="createdBy" th:value="${tempStaff.createdBy==null ? '-----' : tempStaff.createdBy}">
+                            <input type="hidden" id="updatedAt" th:value="${(tempStaff.updatedAt==null) ? '-----' : tempStaff.updatedAt}">
+                            <input type="hidden" id="updatedBy" th:value="${(tempStaff.updatedBy==null) ? '-----' : tempStaff.updatedBy}">
+                            <input type="hidden" id="statusData" th:value="${tempStaff.status}">
+                            
+                            <button id="staff_info_btn">
+                                <i class="fa-solid fa-address-card"></i>
+                            </button>
+                        </td>
+                        <!-- <td th:id="${staffs.indexOf(tempStaff)}">
+                            <button id="staff_edit_btn">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td> -->
+                    </tr>
+                    
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- ****************** Popup Container ************************ -->
+
+        <div class="info_popup_container">
+
+            <button class="closePopupBtn"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="staff_detail_container">
+                <label id="staffDetail_label">Details of <span id="editUserName" style="color:goldenrod;">Staff Name</span></label>
+                <div>
+                    <span id="infoText">Role</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Division</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Staff ID</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Name</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">DoorLogNo</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Department</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Team</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Email</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+
+                <div>
+                    <span id="infoText">Status</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Created at</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Created by</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Last Updated at</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+                <div>
+                    <span id="infoText">Last Updated by</span>
+                    <span id="infoText" class="infoText"></span>
+                </div>
+
+            </div>
+
+            <!-- <div class="staff_info_update_container">
+                <label id="staff_info_edit_label">Edit Admin</label>
+
+                <div>
+                    <div>
+                        <div>
+                            <input id="infoInput" type="text" placeholder="Division" />
+                            <span>*</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" type="text" placeholder="Staff Id" readonly/>
+                            <span>*</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" type="text" placeholder="DoorLog No" readonly/>
+                            <span>*</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" type="text" placeholder="Department Name" />
+                            <span>*</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" type="text" placeholder="Team Name" />
+                            <span>*</span>
+                        </div>
+                        <div>
+                            <input id="infoInput" type="email" placeholder="Email" readonly/>
+                            <span>*</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label id="staff_status_label">Status</label>
+                            <select class="status_dropdown">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label id="staff_role_label">Role</label>
+                            <select class="role_dropdown">
+                                <option value="staff">Staff</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="clear_all_field_btn">Clear All Field<i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="cancelInfoEditBtn">Cancel</button>
+                    <button class="saveInfoEidtBtn">Save</button>
+                </div>
+            </div> -->
+
+        </div>
+
+    </div>
+
+
+    <script th:src="@{/js/js.js}"></script>
+    <script th:src="@{/js/admin.js}"></script>
+
+</body>
+
+</html>

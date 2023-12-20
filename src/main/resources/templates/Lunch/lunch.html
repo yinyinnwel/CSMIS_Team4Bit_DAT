@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch</title>
+
+	<link rel="shortcut icon" th:href="@{/images/DAT favIcon.png}" type="image/x-icon">
+
+    <!-- bootstrap css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="stylesheet" th:href="@{/css/lunch.css}">
+</head>
+
+<body>
+<!------------- Internet Connection Status --------------- -->
+	<div class="connectionContainer">
+		<span id="connection_status"></span>
+	</div>
+<!------------------------------------------------------------>
+    <div class="nav_container">
+        <div class="navi_left">
+            <i class="fa-solid fa-bars toggle_icon"></i>
+            <label class="pagingLabel">Lunch</label>
+        </div>
+
+        <div class="navi_right">
+            <div class="navi_profile_container">
+                <div>
+                	<span id="username" th:text="${loginUserName}"></span>
+                	<i class="fa-solid fa-angle-down" ></i>
+                </div>
+                
+                <div id="profile_setting">
+                    <form th:action="@{/DAT/profile}">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-circle-user"></i>
+                        	<span>Profile</span>
+                    	</button>
+                    </form>
+                    <form th:action="@{/logout}" onSubmit="if(!confirm('Are you sure want to logout?')){return false;}" method="POST">
+                    	<button id="profile_content" type="submit">
+                        	<i class="fa-solid fa-right-from-bracket"></i>
+                        	<span>Logout</span>
+                    	</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="drawer-container">
+        <div class="drawer_container_top">
+            <img id="logo" th:src="@{/images/DAT Logo.png}" alt="Logo" />
+        </div>
+
+        <div class="drawer_content">
+        
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/dashboard}">
+                	<i class="fa-solid fa-house"></i>
+                	<span>Dashboard</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content selected" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/lunch}">
+                	<i class="fa-solid fa-utensils"></i>
+                	<span> Lunch</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/restaurant}">
+                	<i class="fa-solid fa-bell-concierge"></i>
+                	<span>Restaurant</span>
+           		</a>
+           		<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/avoid_meat}">
+                	<i class="fa-solid fa-drumstick-bite"></i>
+               		<i class="fa-solid fa-ban "></i>
+                	<span>Avoid Meats</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/admin_list}">
+                	<i class="fa-solid fa-users-gear"></i>
+                	<span>Admin List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/staff_list}">
+                	<i class="fa-solid fa-users"></i>
+                	<span>Staff List</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasRole('ADMIN')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/invoice}">
+                	<i class="fa-solid fa-file-invoice-dollar"></i>
+                	<span>Invoice</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/holiday_upload}">
+            		<i class="fa-solid fa-mug-hot"></i>
+            		<span>Holidays</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+            <div class="content" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+            	<span id="tab11"></span>
+            	<span id="tab1"></span>
+            	<a th:href="@{/DAT/about}">
+                	<i class="fa-solid fa-circle-info"></i>
+                	<span>About Us</span>
+            	</a>
+            	<span id="tab22"></span>
+            	<span id="tab2"></span>
+            </div>
+            
+        </div>
+
+        <div class="drawer_container_bottom">
+            <img id="logo_4BIT_Icon" th:src="@{/images/4BIT_icon.png}" alt="Logo" />
+            <img id="logo_4BIT_Text" th:src="@{/images/4BIT_text.png}" alt="Logo" />
+        </div>
+    </div>
+
+
+    <div class="center_container">
+        <!-- lunch start row -->
+        <div class="row m-5">
+            <a th:href="@{/DAT/lunch_menu_upload}" class="col-lg-4 col-md-6 col-sm-4 mb-3"  sec:authorize="hasRole('ADMIN')" style="text-decoration: none;">
+                <div class="card p-4 " id="lunchContent">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-title" id="lunchIcon">
+                            <i class="fa-solid fa-utensils fa-4x text-secondary"></i>
+                        </div>
+                        <div class="card-text fs-4 ms-4 text-white" id="lunchLabel" >
+                            Lunch Menu Upload
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a th:href="@{/DAT/lunch_registration}" class="col-lg-4 col-md-6 col-sm-4" style="text-decoration: none;">
+                <div class="card p-4" id="lunchContent">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-title" id="lunchIcon">
+                            <i class="fa-solid fa-sheet-plastic fa-4x text-secondary"></i>
+                        </div>
+                        <div class="card-text fs-4 ms-4 text-white" id="lunchLabel">
+                            Lunch Registration
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a th:href="@{/DAT/lunch_registered_staff_list}" class="col-lg-4 col-md-6 col-sm-4"  sec:authorize="hasRole('ADMIN')" style="text-decoration: none;">
+                <div class="card p-3" id="lunchContent">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-title" id="lunchIcon">
+                            <i class="fa-solid fa-users fa-4x text-secondary"></i>
+                        </div>
+                        <div class="card-text fs-4 ms-4 text-white" id="lunchLabel">
+                            Staff List with Registered Lunch Plans
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+            <a th:href="@{/DAT/lunch_list_today}" class="col-lg-4 col-md-6 col-sm-4"  sec:authorize="hasRole('ADMIN')" style="text-decoration: none;">
+                <div class="card p-3" id="lunchContent">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-title" id="lunchIcon">
+                            <i class="fa-solid fa-list-check fa-4x text-secondary"></i>
+                        </div>
+                        <div class="card-text fs-4 ms-4 text-white" id="lunchLabel" >
+                            DoorLog Transition Import (Today)
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a th:href="@{/DAT/lunch_list_all}" class="col-lg-4 col-md-6 col-sm-4 lunchCard"  sec:authorize="hasRole('ADMIN')" style="text-decoration: none;">
+                <div class="card p-4" id="lunchContent">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-title" id="lunchIcon">
+                            <i class="fa-solid fa-list-check fa-4x text-secondary"></i>
+                        </div>
+                        <div class="card-text fs-4 ms-4 text-white" id="lunchLabel">
+                            All Lunch 
+                            Transition List
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+
+            <a th:href="@{/DAT/lunch_avoidMeatList}" class="col-lg-4 col-md-6 col-sm-4 lunchCard"  sec:authorize="hasRole('ADMIN')" style="text-decoration: none;">
+                <div class="card p-4" id="lunchContent">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="card-title" id="lunchIcon">
+                            <i class="fa-solid fa-list-check fa-4x text-secondary"></i>
+                        </div>
+                        <div class="card-text fs-4 ms-4 text-white" id="lunchLabel">
+                            Avoid Meat Staff List
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- lunch end row -->
+
+        <!-- cost container start row -->
+        <div class="row m-5 containercost">
+            <div class="col-sm-12">
+                <div class="card card1 shadow" id="costContainer">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="card-text" id="costLabel">Company Will Pay </h3>
+                            <h3 class="card-text" id="priceLabel">- <span th:text="${cost.companyCost}"></span> Kyats</h3>
+                        </div>
+                        <br>
+                        <div class="d-flex justify-content-between">
+                            <h3 class="card-text" id="costLabel">Staff Will Pay </h3>
+                            <h3 class="card-text" id="priceLabel">- <span th:text="${cost.staffCost}"></span> Kyats</h3>
+                        </div>
+                        <br>
+                        <div class="text-end" sec:authorize="hasRole('ADMIN')">
+                            <button class="editCostBtn" >Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- cost container end row -->
+        <!-- ****************** Popup Container ************************ -->
+        <div class="popup_container">
+            <button class="closePopup"><i class="fa-solid fa-xmark"></i></button>
+
+			<input id="companyCostHidden" type="hidden" th:value="${cost.companyCost}"/>
+			<input id="staffCostHidden" type="hidden" th:value="${cost.staffCost}"/>
+			
+            <form th:action="@{/DAT/lunch_edit_cost}" method="POST" th:object="${cost}" class="edit_cost_container">
+                <h2>Edit Cost</h2>
+                <div>
+                    <span>Company will pay</span>
+                    <input id="companyCost" type="number" name="companyCost" th:field="*{companyCost}" placeholder="0000 MMK" min="0" required="required"/>
+                </div>
+                <div>
+                    <span>Staff will pay</span>
+                    <input id="staffCost" type="number" name="staffCost" th:field="*{staffCost}" placeholder="0000 MMK" min="0" required="required"/>
+                </div>
+                <button type="submit" class="saveEditCostBtn" >Save</button>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
+
+<script th:src="@{/js/js.js}"></script>
+<script th:src="@{/js/lunch_main.js}"></script>
+
+</html>

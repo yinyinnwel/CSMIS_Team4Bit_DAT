@@ -1,0 +1,139 @@
+.center_container {
+  position: absolute;
+  top: 70px;
+  left: 220px;
+  bottom: 10px;
+  right: 10px;
+  transition: left 0.4s ease-in-out;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #333f50;
+  color: #fff;
+}
+
+.inputFile_container {
+  position: absolute;
+  top: 30px;
+  left: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+#inputFile {
+  padding: 5px;
+  background-color: #cad0d8;
+  border-radius: 3px;
+  outline-style: none;
+  border: none;
+  width: 320px;
+}
+#inputFile::-webkit-file-upload-button {
+  position: absolute;
+  visibility: hidden;
+}
+#inputFile::before {
+  content: "Upload File";
+  color: #fff;
+  display: inline-block;
+  background: #333f50;
+
+  border-radius: 3px;
+  padding: 8px 10px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  margin-right: 10px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+#inputFile:hover::before {
+  background-color: #3f4d60;
+}
+#inputFile:active {
+  outline: 0;
+}
+
+#saveFileBtn {
+  outline-style: none;
+  width: 80px;
+  height: 44px;
+  font-weight: 550;
+  background-color: #333f50;
+  border-radius: 3px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+#saveFileBtn:hover {
+  background-color: #3f4d60;
+}
+
+.showMealContainer {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  bottom: 20px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.4s ease-in-out;
+  background-color: #cad0d8;
+  color: #928a8a;
+  border-radius: 5px;
+}
+
+.showMealContainer.nodata h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  margin: 10% 0;
+  min-height: 200px;
+
+  align-items: center;
+}
+.showMealContainer.withdata h1,
+.showMealContainer.nodata embed{
+	display: none;
+}
+
+.showMealContainer.withdata embed{
+	display: block;
+}
+
+
+
+.filter_dropdown{
+    color: #fff;
+    width: 150px;
+    height: 40px;
+    font-size: 17px;
+    outline-style: none;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    background-color: #333f50;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    margin-left: 5px;
+}
